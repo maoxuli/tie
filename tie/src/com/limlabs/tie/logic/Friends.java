@@ -1,5 +1,5 @@
 package com.limlabs.tie.logic;
-import java.util.*;
+import java.util.LinkedList;
 
 public class Friends {
 	

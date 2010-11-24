@@ -1,5 +1,4 @@
 package com.limlabs.tie.logic;
-
 import java.util.Vector;
 
 public class User {
