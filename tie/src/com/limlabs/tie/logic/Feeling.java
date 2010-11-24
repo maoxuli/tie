@@ -1,7 +1,9 @@
 package com.limlabs.tie.logic;
 
 public class Feeling {
-	int code;
-	String icon;
-	String description;
+	
+	//A feeling
+	public int code;
+	public String icon;
+	public String description;
 }

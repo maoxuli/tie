@@ -1,10 +1,8 @@
 package com.limlabs.tie.logic;
 
 public class Friend extends User {
-	int status;
-	int time;
-	List<Mood> moods;
-	
-	Mood GetMood();
-	List<Mood> GetMoods();
+
+	//Friendship and related time
+	public int status;
+	public long time;
 }
