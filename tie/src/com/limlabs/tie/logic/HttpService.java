@@ -112,7 +112,7 @@ public class HttpService implements Service {
 	//Moods management: Get user and friends' moods data
 	public String getMoods(int uid) {
 		
-		return getHttpContent(host + "/service.php?c=moods&a=listing&uid=" + uid);
+		return getHttpContent(host + "/service.php?c=moods&a=view&uid=" + uid);
 	}
 	
 	//Moods management: Set current mood
