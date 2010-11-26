@@ -19,7 +19,7 @@ $spConfig = array(
         ),
         'auto_display' => TRUE, //Auto display
         'auto_display_sep' => "/", //Link pattern, "/" or "_"
-        'auto_display_suffix' => '.html',
+        'auto_display_suffix' => '.xml',
     ),
     'launch' => array( 
         'router_prefilter' => array( 

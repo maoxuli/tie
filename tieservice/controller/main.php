@@ -23,9 +23,9 @@ class main extends spController
 					//Succeed, redirect to proper page
 					$useracl = spClass("spAcl")->get(); //Current user access role
 					if('a' == $useracl ){
-						$this->jump(spUrl("users","index"));
+						$this->jump(spUrl("users","listing"));
 					}else{
-						$this->jump(spUrl("moods","index"));
+						$this->jump(spUrl("moods","home"));
 					}
 				}
 			}else{

@@ -1,7 +1,7 @@
 <?php
 class lib_user extends spModel
 {
-	var $pk = "uname"; //User's primary key
+	var $pk = "uid"; //User's primary key
 	var $table = "users"; //Users table
 	
 	var $verifier = array( //User verification

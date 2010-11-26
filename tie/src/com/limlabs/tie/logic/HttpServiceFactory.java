@@ -1,6 +1,6 @@
 package com.limlabs.tie.logic;
 
-public class RestServiceFactory implements ServiceFactory {
+public class HttpServiceFactory implements ServiceFactory {
 	
 	public Service createService() {
 		//

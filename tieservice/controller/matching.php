@@ -2,7 +2,7 @@
 class matching extends spController
 {
 	//Moods matching
-	public function index(){
+	public function listing(){
 	
 	}
 } 
