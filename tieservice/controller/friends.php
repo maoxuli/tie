@@ -10,8 +10,18 @@ class friends extends spController
         //Pages information
         $this->pager = spClass("lib_friend")->spPager()->getPager();
 	}
+	
+	//Waiting list
+	public function waiting(){
+	    
+	}
+	
+	//Matching list
+	public function matching(){
+	    
+	}
 
-   //Details of a friends
+    //Details of a friends
     public function view(){
 
     }

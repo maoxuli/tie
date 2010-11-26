@@ -52,6 +52,16 @@ class main extends spController
 		$this->jump(spUrl("main","login"));
 	}
 	
+	//View user
+	public function View(){
+	    
+	}
+	
+	//Update user
+	public function update(){
+	    
+	}
+	
 	//User Register
 	public function register(){
 		$userObj = spClass("lib_user"); //Model lib_user, access table of users
