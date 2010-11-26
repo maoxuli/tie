@@ -1,0 +1,43 @@
+-- phpMyAdmin SQL Dump
+-- version 2.11.9.4
+-- http://www.phpmyadmin.net
+--
+-- Host: 173.201.88.17
+-- Generation Time: Nov 23, 2010 at 10:29 AM
+-- Server version: 5.0.91
+-- PHP Version: 5.2.8
+
+SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+
+--
+-- Database: `tiedb000001`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `acl`
+--
+
+CREATE TABLE `acl` (
+  `aclid` int(11) NOT NULL auto_increment,
+  `name` varchar(200) NOT NULL,
+  `controller` varchar(50) NOT NULL,
+  `action` varchar(50) NOT NULL,
+  `acl_name` varchar(50) NOT NULL COMMENT 'acl in users table',
+  PRIMARY KEY  (`aclid`)
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=17 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users`
+--
+
+CREATE TABLE `users` (
+  `uname` varchar(30) NOT NULL,
+  `upass` varchar(100) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `acl_name` varchar(50) NOT NULL COMMENT 'acl_name in acl table',
+  PRIMARY KEY  (`uname`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;

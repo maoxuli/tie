@@ -1,0 +1,29 @@
+<{include file="header.html"}>
+<div id="main">
+  <div id="title">
+    <h2>Login</h2>
+    <p><a href="<{spUrl c=main a=register}>">Sign up</a></p>
+  </div>
+  <div id="view">
+    <form action="<{spUrl c=main a=login}>" method="post" onsubmit="return aclcode();">
+      <p>User Name<br />
+        <input type="text" name="uname">
+      </p>
+      <p>Password<br />
+        <{pwinput id="upass"}>
+      </p>
+      <p>
+        <input type="submit" value="Submit" />
+      </p>
+    </form>
+  </div>
+  <div id="navi">
+    <ul>
+      <li>Moods</li>
+      <li>Friends</li>
+      <li>Matching</li>
+      <li class="last">Setting</li>
+    </ul>
+  </div>
+</div>
+<{include file="footer.html"}>

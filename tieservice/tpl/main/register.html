@@ -1,0 +1,35 @@
+<{include file="header.html"}>
+<div id="main">
+  <div id="title">
+    <h2>Registration</h2>
+    <p><a href="<{spUrl c=main a=login}>">Return</a></p>
+  </div>
+  <div id="view">
+	  <form action="<{spUrl c=main a=register}>" method="post" onsubmit="return aclcode();">
+	    <p>User Name<br />
+	      <input type="text" name="uname" id="uname" />
+	    </p>
+	    <p>Password<br />
+		  <input type="password" name="upass" id="upass" />
+	    </p>
+	    <p>Confirm Password<br />
+	      <input type="password" name="upass2" id="upass2" />
+	    </p>
+	    <p>Email<br />
+	      <input type="text" name="email" id="email" />
+	    </p>    
+	    <p>
+	      <input type="submit" name="register" id="register" value="Submit" />
+	    </p>
+	  </form>
+  </div>
+  <div id="navi">
+    <ul>
+      <li>Moods</li>
+      <li>Friends</li>
+      <li>Matching</li>
+      <li class="last">Setting</li>
+    </ul>
+  </div> 
+</div>
+<{include file="footer.html"}> 

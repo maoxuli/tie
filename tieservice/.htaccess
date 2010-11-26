@@ -1,0 +1,2 @@
+RewriteEngine On
+DirectoryIndex index.php?c=main&a=login
