@@ -9,12 +9,7 @@ public class Tie extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //setContentView(R.layout.main);
-        TextView tv = new TextView(this);
-        tv.setText("Hello World!");
-        setContentView(tv);
         
-        MianViwn mv
-        
+        setContentView(R.layout.main);
     }
 }

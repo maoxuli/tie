@@ -2,5 +2,5 @@ package com.limlabs.tie.logic;
 
 public interface ServiceFactory {
 	
-	public Service createService();
+	public Service createService(String server);
 }
