@@ -4,6 +4,17 @@ import java.util.Vector;
 
 public class Friends {
 	
+	
+	public Friends() {
+		
+	}
+	
+	public boolean initialize() {
+		
+		
+		
+	}
+	
 	//Friends list
 	private LinkedList<Friend> friends = new LinkedList<Friend>();
 	

@@ -7,10 +7,20 @@ public class CurrentUser extends User {
 	public String upass;
 	public String token;
 	
+	Service srv = null;
+	
+	ServiceFactory sf = new HttpServiceFactory();
+	
 	public boolean login() {
 		//Check uname and upass
 		
+		srv = sf.createService("http://app.limlabs.com/tie");
+
+		
+		srv.login(xml);
+		
 		//Using uname and upass login to get token from server
+		
 		
 		//If successful, update current user's information and moods data
 		

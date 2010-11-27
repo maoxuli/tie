@@ -2,22 +2,15 @@ package com.limlabs.tie;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.widget.TextView;
 
-public class Tie extends Activity {
-	
-    /** Called when the activity is first created. */
+public class Login extends Activity {
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         
         //setContentView(R.layout.main);
 
-        LoginView lv = new LoginVeiw(this);
         
-        setContentView(lv);
-    }
-    
-    
-    
+    } 
 }
