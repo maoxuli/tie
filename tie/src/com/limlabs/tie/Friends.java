@@ -11,7 +11,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 
 public class Friends extends Activity implements OnClickListener {
-
+	
 	//Main menu
 	private Button btn_moods;
 	private Button btn_friends;
@@ -34,6 +34,12 @@ public class Friends extends Activity implements OnClickListener {
 		btn_friends.setOnClickListener(this);
 		btn_matching.setOnClickListener(this);
 		btn_logout.setOnClickListener(this);
+		
+		//Get friends list via Master
+		Master master = Master.instance();
+		Vector<Friend> friends = master.getFriends();
+		
+		
 		
 	}
 	

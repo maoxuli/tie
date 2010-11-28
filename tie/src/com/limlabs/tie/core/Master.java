@@ -111,8 +111,12 @@ public class Master extends User {
 	//Friends
 	public Vector<Friend> getFriends() {
 
+		Vector<Friend> friends = new Vector<Friend>();
 		
-		service.getFriends();
+		if(service != null) {
+			
+			service.getFriends();
+		}
 
 		return friends;
 	}
