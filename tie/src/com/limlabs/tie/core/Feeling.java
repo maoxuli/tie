@@ -1,4 +1,4 @@
-package com.limlabs.tie.logic;
+package com.limlabs.tie.core;
 
 public class Feeling {
 	

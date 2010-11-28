@@ -1,7 +1,16 @@
 <?php
+
+/*
+ * Functions around friendship among users
+ * - Add friends to a user
+ * - Remote friends from a user
+ * - listing friends of a user
+ * - listing candidate friends of a user 
+ */
+
 class friends extends spController
 {
-	//Friends List
+	//Listing friends
 	public function listing(){
 	    
         //Retrieve friends list, and pass to page via results
@@ -15,16 +24,6 @@ class friends extends spController
 	public function waiting(){
 	    
 	}
-	
-	//Matching list
-	public function matching(){
-	    
-	}
-
-    //Details of a friends
-    public function view(){
-
-    }
     
 	//Add new friends
 	public function add(){

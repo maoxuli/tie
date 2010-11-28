@@ -1,4 +1,4 @@
-package com.limlabs.tie.logic;
+package com.limlabs.tie.core;
 
 public class Mood {
 	
@@ -6,8 +6,8 @@ public class Mood {
 	public int feeling;
 	public long time;
 	
-	public Mood(int code) {
-		feeling = code;
+	public Mood(int fid) {
+		feeling = fid;
 		time = System.currentTimeMillis();
 	}
 }

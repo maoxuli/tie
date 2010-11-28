@@ -1,23 +1,38 @@
 <?php
+
+/*
+ * Functions around moods management
+ * - Feelings list for choice
+ * - Capture mood of a user
+ * - View moods of a user
+ * - Listing of users' moods
+ * - Matching users to a user
+ */
+
 class moods extends spController
 {
-    //List of my and friends' moods
+    //Feelings list for choice
+    public function feelings(){
+        
+    }
+    
+    //List of users' moods
     public function home(){
 
     }   
     
-    //Feelings list
-	public function feelings(){
-
-	}
+    //Capture user's mood
+    public function update(){
+        
+    }
     
     //View user's mood
     public function view(){
         
     }
     
-    //Update user's mood
-    public function update(){
+    //Matching users with mood
+    public function matching(){
         
     }
 }

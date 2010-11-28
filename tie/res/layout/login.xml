@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    >
+    
+    <EditText
+    android:id="@+id/edt_uname"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="20dip"
+    android:layout_marginLeft="20dip"
+    android:layout_marginRight="20dip"
+    android:text=""
+    android:padding="5px"
+    />
+    
+    <EditText
+    android:id="@+id/edt_upass"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="20dip"
+    android:layout_marginRight="20dip"
+    android:text=""
+    android:padding="5px"
+    android:password="true"
+    />
+
+    <Button
+    android:id="@+id/btn_submit"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="20dip"
+    android:layout_marginRight="15dip"
+    android:text="Submit"
+    android:textSize="22sp"
+    />
+</LinearLayout>

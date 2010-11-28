@@ -1,7 +1,89 @@
 <?php
+
+/* 
+ * Basic functions around a user
+ * - Register as a member user
+ * - Login/Logout
+ * - View user's information
+ * - Update user's information
+ */
+
 import('md5password.php');
 class main extends spController
 {
+    //User Register
+    public function register(){
+        $userObj = spClass("lib_user"); //Model lib_user, access table of users
+        if( $uname = $this->spArgs("uname") ){ //Submit, register
+            $upass = $this->spArgs("upass");
+            $upass2 = $this->spArgs("upass2");
+            $email = $this->spArgs("email");
+            
+            //Check user name and password and email
+            $rows = array('uname' => $uname, 'upass' => $upass, 'upass2' => $upass2, 'email' => $email);
+            $results = $userObj->spVerifier($rows);
+            
+            if( false == $results ){ // flase, no illegle data
+            
+                //Register
+                if( false == $userObj->userRegister($uname, $upass, $email) ){
+                    //Failed, return to register page
+                    $this->error("Register failed! Please try again.", spUrl("main","register"));
+                    
+                }else{
+                    //Succeed, redirect to proper page
+                    $this->jump(spUrl("main","login"));
+                }
+            }else{
+                //User name and password check failed.
+                //dump($results);
+                foreach($results as $item){ //Rules
+                    foreach($item as $msg){ 
+                        // Errors, first is enough
+                        $this->error($msg,spUrl("main","register"));
+                    }
+                }
+            }
+        }
+        //Not submit, auto redirect to main/register.html
+    }
+    
+    //Service log  in
+    public function slogin(){
+        
+        $uname = $this->spArgs("uname");
+        $upass = $this->spArgs("upass");
+        
+        $userObj = spClass("lib_user"); //Model lib_user
+        
+        //Check user name and password
+        $rows = array('uname' => $uname, 'upass' => $upass);
+        $results = $userObj->spVerifier($rows);
+            
+        if( false == $results ){ // flase, no illegle data
+        
+            //Log in
+            if( false == $userObj->userLogin($uname, $upass) ){
+                //Failed
+                $this->results = 1;
+                
+            }else{
+                //Succeed
+                $this->results = 0;
+            }
+         }
+         else{
+            //User name and password check failed.
+            //dump($results);
+            foreach($results as $item){ //Rules
+                foreach($item as $msg){ 
+                    // Errors, first is enough
+                    $this->results = 2;
+                }
+            }
+        }    
+    }
+    
 	//Log In
 	public function login(){
 		$userObj = spClass("lib_user"); //Model lib_user
@@ -61,45 +143,4 @@ class main extends spController
 	public function update(){
 	    
 	}
-	
-	//User Register
-	public function register(){
-		$userObj = spClass("lib_user"); //Model lib_user, access table of users
-        if( $uname = $this->spArgs("uname") ){ //Submit, register
-            $upass = $this->spArgs("upass");
-            $upass2 = $this->spArgs("upass2");
-            $email = $this->spArgs("email");
-            
-            //Check user name and password and email
-            $rows = array('uname' => $uname, 'upass' => $upass, 'upass2' => $upass2, 'email' => $email);
-            $results = $userObj->spVerifier($rows);
-            
-            if( false == $results ){ // flase, no illegle data
-            
-                //Register
-                if( false == $userObj->userRegister($uname, $upass, $email) ){
-                    //Failed, return to register page
-                    $this->error("Register failed! Please try again.", spUrl("main","register"));
-                    
-                }else{
-                    //Succeed, redirect to proper page
-                    $this->jump(spUrl("main","login"));
-                }
-            }else{
-                //User name and password check failed.
-                //dump($results);
-                foreach($results as $item){ //Rules
-                    foreach($item as $msg){ 
-                        // Errors, first is enough
-                        $this->error($msg,spUrl("main","register"));
-                    }
-                }
-            }
-        }
-        //Not submit, auto redirect to main/register.html
-	}
-	
-    //User Setting
-    public function setting(){
-    }
 } 
