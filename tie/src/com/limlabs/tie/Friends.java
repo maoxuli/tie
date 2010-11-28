@@ -3,12 +3,15 @@ package com.limlabs.tie;
 import com.limlabs.tie.core.*;
 import java.util.*;
 
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListView;
 
 public class Friends extends Activity implements OnClickListener {
 	
@@ -17,6 +20,7 @@ public class Friends extends Activity implements OnClickListener {
 	private Button btn_friends;
 	private Button btn_matching;
 	private Button btn_logout;
+	private ListView friendList;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +34,7 @@ public class Friends extends Activity implements OnClickListener {
 		btn_friends = (Button)findViewById(R.id.btn_friends);
 		btn_matching = (Button)findViewById(R.id.btn_matching);
 		btn_logout = (Button)findViewById(R.id.btn_logout);
+		friendList = (ListView)findViewById(R.id.friend_list);
 		btn_moods.setOnClickListener(this);
 		btn_friends.setOnClickListener(this);
 		btn_matching.setOnClickListener(this);
@@ -38,8 +43,8 @@ public class Friends extends Activity implements OnClickListener {
 		//Get friends list via Master
 		Master master = Master.instance();
 		Vector<Friend> friends = master.getFriends();
-		
-		
+        friendList.setAdapter(new ArrayAdapter<String>(this, 
+       		 android.R.layout.simple_expandable_list_item_1,getData())); 
 		
 	}
 	
@@ -67,4 +72,19 @@ public class Friends extends Activity implements OnClickListener {
             startActivityForResult(myIntent, 0);
     	}
     }
+    
+    private List<String> getData(){  
+ List<String> data = new ArrayList<String>();  
+ 		data.add("1111111");  
+ 		data.add("2222222");  
+		data.add("3333333");  
+		data.add("4444444");  
+
+		return data;  
+    }  
+
+
+    
+    
 }
+
