@@ -11,7 +11,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
+        <activity android:name=".Moods"
+                  android:label="Moods">
+        </activity>
+                <activity android:name=".Friends"
+                  android:label="Friends">
+        </activity>
+                <activity android:name=".Matching"
+                  android:label="Matching">
+        </activity>
     </application>
 
     <uses-permission android:name="android.permission.INTERNET" />

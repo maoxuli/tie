@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    >
+    <Button
+    android:id="@+id/btn_moods"
+    android:text="Moods"
+    android:layout_width="80dip"
+    android:layout_height="wrap_content"
+    />
+    <Button
+    android:id="@+id/btn_friends"
+    android:text="Friends"
+    android:layout_width="80dip"
+    android:layout_height="wrap_content"
+    />
+    <Button
+    android:id="@+id/btn_matching"
+    android:text="Matching"
+    android:layout_width="80dip"
+    android:layout_height="wrap_content"
+    />
+    <Button
+    android:id="@+id/btn_logout"
+    android:text="Logout"
+    android:layout_width="80dip"
+    android:layout_height="wrap_content"
+    />
+</LinearLayout>
