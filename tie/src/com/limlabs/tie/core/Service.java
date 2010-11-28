@@ -11,7 +11,7 @@ import java.util.*;
 public interface Service {
 	
 	//Around a user
-	public boolean login(String credential);
+	public int login(String credential);
 	public boolean logout();
 	public String getUser(int uid);
 	public boolean updateUser(String user);

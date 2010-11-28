@@ -104,10 +104,10 @@ public class HttpService implements Service {
 		return result.toString();
 	}
 	
-	public boolean login(String credential) {
+	public int login(String credential) {
 		
 		String result = postHttpRequest("/service.php?c=main&a=slogin", credential);
-		return true;
+		return Integer.parseInt(result);
 	}
 
 	//Logout

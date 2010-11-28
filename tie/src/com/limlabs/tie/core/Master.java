@@ -55,12 +55,18 @@ public class Master extends User {
 	//Login
 	public boolean login() {
 		
-		service = new HttpService(host);
+		if(service == null)
+			service = new HttpService(host);
 		
 		String credential = "uname=" + uname + "&upass=" + md5(upass);
-		service.login(credential);
+		uid = service.login(credential);
+		if(uid == 0)
+			return false;
 		
-		return false;
+		String user = service.getUser(uid);
+		
+		
+		return true;
 	}
 	
 	//Logout
