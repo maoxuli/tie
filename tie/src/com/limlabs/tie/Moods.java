@@ -1,5 +1,7 @@
 package com.limlabs.tie;
 
+import com.limlabs.tie.core.Master;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -55,6 +57,9 @@ public class Moods extends Activity implements OnClickListener {
     	}
     	else if (v.equals(btn_logout)) {
     		//Switch to Login activity
+    		Master master = Master.instance();
+    		master.logout();
+    		
     		Intent myIntent = new Intent(v.getContext(), Login.class);
             startActivityForResult(myIntent, 0);
     	}

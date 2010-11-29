@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tie><friends><listing>
+<{foreach from=$results item=result}>
+<friend>
+   <uid_1><{$result.uid_1}></uid_1>
+   <uid_2><{$result.uid_2}></uid_2>
+   <status><{$result.status}></status>
+   <time><{$result.time}></time>
+</friend>
+<{/foreach}>
+</listing></friends></tie>
+
+    

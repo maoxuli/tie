@@ -18,6 +18,8 @@ class main extends spController
             $upass = $this->spArgs("upass");
             $upass2 = $this->spArgs("upass2");
             $email = $this->spArgs("email");
+            $lname = $this->spArgs("lname");
+            $fname = $this->spArgs("fname");
             
             //Check user name and password and email
             $rows = array('uname' => $uname, 'upass' => $upass, 'upass2' => $upass2, 'email' => $email);
@@ -26,7 +28,7 @@ class main extends spController
             if( false == $results ){ // flase, no illegle data
             
                 //Register
-                if( false == $userObj->userRegister($uname, $upass, $email) ){
+                if( false == $userObj->userRegister($uname, $upass, $email, $lname, $fname) ){
                     //Failed, return to register page
                     $this->error("Register failed! Please try again.", spUrl("main","register"));
                     
@@ -65,19 +67,16 @@ class main extends spController
             //Log in
             if( true == $userObj->userLogin($uname, $upass) ){
                 //Failed
-                $this->results = $_SESSION["userinfo"]["uid"];
+                $this->result = "OK";
+            }
+            else {
+                $this->result = "FALSE";
             }
          }
          else{
             //User name and password check failed.
-            //dump($results);
-            foreach($results as $item){ //Rules
-                foreach($item as $msg){ 
-                    // Errors, first is enough
-                    $this->results = 0;
-                }
-            }
-        }    
+            $this->result = "FAULSE";
+         }    
     }
     
 	//Log In
@@ -131,8 +130,11 @@ class main extends spController
 	}
 	
 	//View user
-	public function View(){
-	    
+	public function sview(){
+	    //User id
+        $uid = $_SESSION["userinfo"]["uid"];
+        $condition = array("uid"=>$uid);
+        $this->result = spClass("lib_user")->find($condition);
 	}
 	
 	//Update user

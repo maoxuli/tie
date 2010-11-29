@@ -53,18 +53,18 @@ public class Login extends Activity implements OnClickListener {
 		
     	if (v.equals(btn_moods)) {
     		//Switch to Moods activity
-    		Intent myIntent = new Intent(v.getContext(), Moods.class);
-            startActivityForResult(myIntent, 0);
+    		//Intent myIntent = new Intent(v.getContext(), Moods.class);
+            //startActivityForResult(myIntent, 0);
     	}
     	else if (v.equals(btn_friends)) {
     		//Switch to Friends activity
-    		Intent myIntent = new Intent(v.getContext(), Friends.class);
-            startActivityForResult(myIntent, 0);
+    		//Intent myIntent = new Intent(v.getContext(), Friends.class);
+            //startActivityForResult(myIntent, 0);
     	}
     	else if (v.equals(btn_matching)) {
     		//Switch to Matching activity
-    		Intent myIntent = new Intent(v.getContext(), Matching.class);
-            startActivityForResult(myIntent, 0);
+    		//Intent myIntent = new Intent(v.getContext(), Matching.class);
+            //startActivityForResult(myIntent, 0);
     	}
     	else if (v.equals(btn_logout)) {
     		//Switch to Login activity
@@ -78,10 +78,11 @@ public class Login extends Activity implements OnClickListener {
 			master.host = "http://app.limlabs.com/tie";
 			master.uname = edt_uname.getText().toString();
 			master.upass = edt_upass.getText().toString();
-			master.login();  
-    	}
-    		
+			if(master.login()) {
+	    		//Switch to Moods activity
+	    		Intent myIntent = new Intent(v.getContext(), Moods.class);
+	            startActivityForResult(myIntent, 0);
+			}
+    	}	
 	}  
-    
-
 }

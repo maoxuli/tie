@@ -11,13 +11,12 @@
 class friends extends spController
 {
 	//Listing friends
-	public function listing(){
+	public function slisting(){
 	    
-        //Retrieve friends list, and pass to page via results
-        $this->results = spClass("lib_friend")->spPager($this->spArgs("page",1),5)->findAll(null,"time DESC","uid_1,uid_2,status,time");
-        
-        //Pages information
-        $this->pager = spClass("lib_friend")->spPager()->getPager();
+	    $uid = $_SESSION["userinfo"]["uid"];
+	    $condition = array("uid_1"=>$uid);
+	    
+        $this->results = spClass("lib_friend")->findAll($condition);
 	}
 	
 	//Waiting list
@@ -33,5 +32,12 @@ class friends extends spController
 	//Remove friends
 	public function remove(){
 
+	}
+	
+	//View friend
+	public function sview(){
+	    $uid = $this->spArgs("uid");
+	    $condition = array("uid"=>$uid);
+        $this->result = spClass("lib_user")->find($condition);
 	}
 } 

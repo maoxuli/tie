@@ -63,25 +63,25 @@ public class Master extends User {
 			service = new HttpService(host);
 		
 		String credential = "uname=" + uname + "&upass=" + md5(upass);
-		uid = service.login(credential);
-		System.out.printf("Master::login() uid=%d\r\n", uid);
-		
-		if(uid == 0)
+		if(!service.login(credential)) {
+			
+			System.out.println("Master::login() failed!");
 			return false;
+		}
 		
 		//Get current user's information
-		String us = service.getUser(uid);
+		String us = service.viewUser();
 		
+		//XML parser
 		try{
-			//XML parser factory
 			DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 			DocumentBuilder builder = factory.newDocumentBuilder();
 			InputStream is = new ByteArrayInputStream(us.getBytes("UTF-8"));
 			Document dom = builder.parse(is);
 			Element root = dom.getDocumentElement();
-			System.out.println("test");
-			
-			fromXML((Element)root.getElementsByTagName("uid").item(0).getFirstChild());
+
+			super.fromXML((Element)root.getElementsByTagName("user").item(0));
+			user_info_dump();
 		}
 		catch(Exception ex) {
 			System.out.println("Master::login() user xml parser exception:" + ex.getMessage());
@@ -93,7 +93,14 @@ public class Master extends User {
 	//Logout
 	public boolean logout() {
 		
-		return false;
+		if(service != null) {
+			service.logout();
+			service = null;
+		}
+		
+		friends.clear();
+		
+		return true;
 	}
 	
 	//Feelings
@@ -137,8 +144,6 @@ public class Master extends User {
 	
 	//Friends
 	public Vector<Friend> getFriends() {
-
-		Vector<Friend> friends = new Vector<Friend>();
 		
 		if(service != null) {
 			
@@ -153,16 +158,16 @@ public class Master extends User {
 				Document dom = builder.parse(is);
 				Element root = dom.getDocumentElement();
 				
-				NodeList nodes = root.getElementsByTagName("Friend");
+				NodeList nodes = root.getElementsByTagName("friend");
 				for(int i=0; i<nodes.getLength(); i++) {
 					
 					Friend fri = new Friend(service);
-					fri.fromXML((Element)nodes.item(i).getFirstChild());
+					fri.fromXML((Element)nodes.item(i));
 					friends.add(fri);
 				}
 			}
 			catch(Exception ex) {
-				System.out.println("Master::Login() friends xml parser exception:" + ex.getMessage());
+				System.out.println("Master::getFriends() friends xml parser exception:" + ex.getMessage());
 			}		
 		}
 

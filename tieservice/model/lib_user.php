@@ -52,12 +52,14 @@ class lib_user extends spModel
      * @param upass    Password, cipered password with MD5
      * @param email    Email address
      */
-    public function userRegister($uname, $upass, $email){ 
+    public function userRegister($uname, $upass, $email, $lname, $fname){ 
         $row = array(
             "uname"=>$uname,
             "email"=>$email,
             "upass"=>md5($upass),
             "aclrole"=>"m",
+            "lname"=>lname,
+            "fname"=>fname,
         );
         parent::create($row);
         return true;

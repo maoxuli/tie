@@ -3,13 +3,43 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     >
-    
-    <ListView
-	android:id="@+id/friend_list"
-	android:layout_width="fill_parent"
-	android:layout_height="fill_parent"
-	android:drawSelectorOnTop="false"
-	/>
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        >
+        
+	    <ListView
+		android:id="@+id/friend_list"
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:drawSelectorOnTop="false"
+		/>
+	
+		<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+		    android:orientation="horizontal"
+		    android:layout_width="fill_parent"
+		    android:layout_height="wrap_content"
+		    >
+		    <Button
+	        android:id="@+id/btn_add"
+	        android:text="Add Friends"
+	        android:layout_width="150dip"
+	        android:layout_height="wrap_content"
+	        android:layout_marginTop="20dip"
+	        android:textSize="16sp"
+	        />
+		    <Button
+	        android:id="@+id/btn_remove"
+	        android:text="Remove Friends"
+	        android:layout_width="150dip"
+	        android:layout_height="wrap_content"
+	        android:layout_marginTop="20dip"
+	        android:layout_marginLeft="20dip"
+	        android:textSize="16sp"
+	        />
+		</LinearLayout>
+    </LinearLayout>
 
     <RelativeLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
@@ -17,7 +47,6 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         >
-        
         <include layout="@layout/menu" />
     </RelativeLayout>
 </RelativeLayout>

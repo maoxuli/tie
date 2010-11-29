@@ -12,7 +12,7 @@ public class Friend extends User {
 
 	//Friendship and related time
 	public int status;
-	public long time;
+	public String time;
 	
 	//Service
 	private Service service = null;
@@ -37,28 +37,27 @@ public class Friend extends User {
 		return moods;
 	}
 	
-	public boolean fromXML(Element e) {
-		
-		uid = Integer.parseInt(e.getElementsByTagName("uid").item(0).getNodeValue());
-		
-		//Get current user's information
-		String us = service.getUser(uid);
+	public boolean fromXML(Element f) {
 		
 		try{
+			uid = Integer.parseInt(f.getElementsByTagName("uid_2").item(0).getFirstChild().getNodeValue());
+			status = Integer.parseInt(f.getElementsByTagName("status").item(0).getFirstChild().getNodeValue());
+			time = f.getElementsByTagName("time").item(0).getFirstChild().getNodeValue();
+			
+			//Get current user's information
+			String us = service.viewFriend(uid);
+
 			//XML parser factory
 			DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 			DocumentBuilder builder = factory.newDocumentBuilder();
 			InputStream is = new ByteArrayInputStream(us.getBytes("UTF-8"));
 			Document dom = builder.parse(is);
 			Element root = dom.getDocumentElement();
-			
-			fromXML((Element)root.getElementsByTagName("uid").item(0).getFirstChild());
-			
-			status = Integer.parseInt(e.getElementsByTagName("status").item(0).getFirstChild().getNodeValue());
-			time = Long.parseLong(e.getElementsByTagName("time").item(0).getFirstChild().getNodeValue());
+			super.fromXML((Element)root.getElementsByTagName("user").item(0));
+			user_info_dump();
 		}
 		catch(Exception ex) {
-			System.out.println("Master::login() user xml parser exception:" + ex.getMessage());
+			System.out.println("Friend::fromXML() user xml parser exception:" + ex.getMessage());
 		}
 		
 		return true;

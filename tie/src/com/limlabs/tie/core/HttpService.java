@@ -20,6 +20,9 @@ public class HttpService implements Service {
 	//Server host
 	private String host = "";
 	
+	//Session string
+	private String session_id = "";
+	
 	//Constructor
 	public HttpService(String h) {
 		
@@ -28,7 +31,7 @@ public class HttpService implements Service {
 	
 	//Get content from server
 	private String getHttpContent(String parameter) {
-				
+						
 		System.out.printf("HttpService::GET(%s)\r\n", host + parameter);
 
 		//Build text lines
@@ -38,7 +41,10 @@ public class HttpService implements Service {
 		    	
 			URL postUrl = new URL(host + parameter);
 			HttpURLConnection conn = (HttpURLConnection)postUrl.openConnection();
-	        	
+			if(session_id != "") {
+				conn.setRequestProperty("Cookie", session_id);
+			}
+			
         	BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
 	    	
         	 String line;
@@ -50,6 +56,11 @@ public class HttpService implements Service {
      	     System.out.printf("HttpService::GET content: %s\r\n", content.toString());
 	    	 reader.close();     
 	        
+			if(session_id == "") {
+				String cookie = conn.getHeaderField("Set-Cookie");
+				session_id = cookie.split(";")[0];
+			}
+				
 			 conn.disconnect();
 	    }
 	    catch (Exception ex) {
@@ -79,6 +90,10 @@ public class HttpService implements Service {
 			conn.setUseCaches(false);
 			conn.setInstanceFollowRedirects(true);
 			conn.setRequestProperty("Content-Type","application/x-www-form-urlencoded");
+			if(session_id != "") {
+				conn.setRequestProperty("Cookie", session_id);
+			}
+			
 			conn.connect();
         	
         	DataOutputStream out = new DataOutputStream(conn.getOutputStream());
@@ -100,6 +115,11 @@ public class HttpService implements Service {
      	    System.out.printf("HttpService::POST result: %s\r\n", result.toString());
 	    	reader.close();
  
+			if(session_id == "") {
+				String cookie = conn.getHeaderField("Set-Cookie");
+				session_id = cookie.split(";")[0];
+			}
+			
 	    	conn.disconnect();
         }
         catch (Exception ex) {
@@ -110,7 +130,7 @@ public class HttpService implements Service {
 		return result.toString();
 	}
 	
-	public int login(String credential) {
+	public boolean login(String credential) {
 		
 		String result = postHttpRequest("/service.php?c=main&a=slogin", credential);
 		
@@ -120,15 +140,17 @@ public class HttpService implements Service {
 			DocumentBuilder builder = factory.newDocumentBuilder();
 			InputStream is = new ByteArrayInputStream(result.getBytes("UTF-8"));
 			Document dom = builder.parse(is);
-			Element root = dom.getDocumentElement();			
-			return Integer.parseInt(root.getElementsByTagName("result").item(0).getFirstChild().getNodeValue());
+			Element root = dom.getDocumentElement();	
+			
+			String res = root.getElementsByTagName("result").item(0).getFirstChild().getNodeValue();
+			return res.compareToIgnoreCase("OK") == 0;
 
 		}
 		catch(Exception ex) {
 			System.out.println(ex.getMessage());
 		}
 		
-		return 0;
+		return false;
 	}
 
 	//Logout
@@ -139,9 +161,9 @@ public class HttpService implements Service {
 	}
 
 	//Get current user
-	public String getUser(int uid) {
+	public String viewUser() {
 		
-		return getHttpContent("/service.php?c=main&a=view&uid=" + uid);
+		return getHttpContent("/service.php?c=main&a=sview");
 	}
 	
 	//Update current user
@@ -165,10 +187,16 @@ public class HttpService implements Service {
 		return true;
 	}
 	
+	//Friends management: View friend
+	public String viewFriend(int uid) {
+		
+		return getHttpContent("/service.php?c=friends&a=sview&uid=" + uid);
+	}
+	
 	//Friends management: Get Friends list
 	public String getFriends() {
 		
-		return getHttpContent("/service.php?c=friends&a=listing");
+		return getHttpContent("/service.php?c=friends&a=slisting");
 	}
 	
 	//Friends management: Get waiting list

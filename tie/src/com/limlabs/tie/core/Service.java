@@ -11,14 +11,15 @@ import java.util.*;
 public interface Service {
 	
 	//Around a user
-	public int login(String credential);
+	public boolean login(String credential);
 	public boolean logout();
-	public String getUser(int uid);
+	public String viewUser();
 	public boolean updateUser(String user);
 	
 	//Around friendship
 	public boolean addFriend(int uid);
 	public boolean removeFriend(int uid);
+	public String viewFriend(int uid);
 	public String getFriends();
 	public String getWaiting();
 
