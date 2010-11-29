@@ -1,5 +1,4 @@
 package com.limlabs.tie;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,14 +6,18 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.TextView;
 
-public class Moods extends Activity implements OnClickListener {
+public class Moods extends Activity implements OnClickListener{
 
 	//Main menu
 	private Button btn_moods;
 	private Button btn_friends;
 	private Button btn_matching;
 	private Button btn_logout;
+	private RadioGroup feelings_group;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -33,8 +36,8 @@ public class Moods extends Activity implements OnClickListener {
 		btn_matching.setOnClickListener(this);
 		btn_logout.setOnClickListener(this);
 		
+   //radio group
 	}
-	
 	// Implement the OnClickListener callback
     public void onClick(View v) {
     	

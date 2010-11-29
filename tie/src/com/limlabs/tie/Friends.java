@@ -34,11 +34,12 @@ public class Friends extends Activity implements OnClickListener {
 		btn_friends = (Button)findViewById(R.id.btn_friends);
 		btn_matching = (Button)findViewById(R.id.btn_matching);
 		btn_logout = (Button)findViewById(R.id.btn_logout);
-		friendList = (ListView)findViewById(R.id.friend_list);
 		btn_moods.setOnClickListener(this);
 		btn_friends.setOnClickListener(this);
 		btn_matching.setOnClickListener(this);
 		btn_logout.setOnClickListener(this);
+		
+		friendList = (ListView)findViewById(R.id.friend_list);
 		
 		//Get friends list via Master
 		Master master = Master.instance();
