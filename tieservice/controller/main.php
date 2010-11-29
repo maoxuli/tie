@@ -63,13 +63,9 @@ class main extends spController
         if( false == $results ){ // flase, no illegle data
         
             //Log in
-            if( false == $userObj->userLogin($uname, $upass) ){
+            if( true == $userObj->userLogin($uname, $upass) ){
                 //Failed
-                $this->results = 1;
-                
-            }else{
-                //Succeed
-                $this->results = 0;
+                $this->results = $_SESSION["userinfo"]["uid"];
             }
          }
          else{
@@ -78,7 +74,7 @@ class main extends spController
             foreach($results as $item){ //Rules
                 foreach($item as $msg){ 
                     // Errors, first is enough
-                    $this->results = 2;
+                    $this->results = 0;
                 }
             }
         }    
