@@ -1,9 +1,13 @@
 package com.limlabs.tie.core;
 
+import javax.xml.parsers.*;
+import org.w3c.dom.*;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.*;
+import java.io.*;
+
 
 public class Master extends User {
 
@@ -60,11 +64,28 @@ public class Master extends User {
 		
 		String credential = "uname=" + uname + "&upass=" + md5(upass);
 		uid = service.login(credential);
+		System.out.printf("Master::login() uid=%d\r\n", uid);
+		
 		if(uid == 0)
 			return false;
 		
-		String user = service.getUser(uid);
+		//Get current user's information
+		String us = service.getUser(uid);
 		
+		try{
+			//XML parser factory
+			DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+			DocumentBuilder builder = factory.newDocumentBuilder();
+			InputStream is = new ByteArrayInputStream(us.getBytes("UTF-8"));
+			Document dom = builder.parse(is);
+			Element root = dom.getDocumentElement();
+			System.out.println("test");
+			
+			fromXML((Element)root.getElementsByTagName("uid").item(0).getFirstChild());
+		}
+		catch(Exception ex) {
+			System.out.println("Master::login() user xml parser exception:" + ex.getMessage());
+		}
 		
 		return true;
 	}
@@ -121,7 +142,28 @@ public class Master extends User {
 		
 		if(service != null) {
 			
-			service.getFriends();
+			String fs = service.getFriends();
+			friends.clear();
+			
+			try{
+				//XML parser factory
+				DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+				DocumentBuilder builder = factory.newDocumentBuilder();
+				InputStream is = new ByteArrayInputStream(fs.getBytes("UTF-8"));
+				Document dom = builder.parse(is);
+				Element root = dom.getDocumentElement();
+				
+				NodeList nodes = root.getElementsByTagName("Friend");
+				for(int i=0; i<nodes.getLength(); i++) {
+					
+					Friend fri = new Friend(service);
+					fri.fromXML((Element)nodes.item(i).getFirstChild());
+					friends.add(fri);
+				}
+			}
+			catch(Exception ex) {
+				System.out.println("Master::Login() friends xml parser exception:" + ex.getMessage());
+			}		
 		}
 
 		return friends;
@@ -132,4 +174,5 @@ public class Master extends User {
 		
 		return friends;
 	}
+	
 }

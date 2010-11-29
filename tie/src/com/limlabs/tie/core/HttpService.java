@@ -4,6 +4,12 @@ import java.util.*;
 import java.io.*;
 import java.net.*;
 
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+
 /*
  * Interface with server via http GET and POST
  * 
@@ -107,7 +113,22 @@ public class HttpService implements Service {
 	public int login(String credential) {
 		
 		String result = postHttpRequest("/service.php?c=main&a=slogin", credential);
-		return Integer.parseInt(result);
+		
+		try{
+			//XML parser factory
+			DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+			DocumentBuilder builder = factory.newDocumentBuilder();
+			InputStream is = new ByteArrayInputStream(result.getBytes("UTF-8"));
+			Document dom = builder.parse(is);
+			Element root = dom.getDocumentElement();			
+			return Integer.parseInt(root.getElementsByTagName("result").item(0).getFirstChild().getNodeValue());
+
+		}
+		catch(Exception ex) {
+			System.out.println(ex.getMessage());
+		}
+		
+		return 0;
 	}
 
 	//Logout

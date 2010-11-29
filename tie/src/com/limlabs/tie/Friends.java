@@ -44,6 +44,7 @@ public class Friends extends Activity implements OnClickListener {
 		//Get friends list via Master
 		Master master = Master.instance();
 		Vector<Friend> friends = master.getFriends();
+		
         friendList.setAdapter(new ArrayAdapter<String>(this, 
        		 android.R.layout.simple_expandable_list_item_1,getData())); 
 		
