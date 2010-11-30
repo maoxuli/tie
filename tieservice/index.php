@@ -2,10 +2,15 @@
 define("SP_PATH",dirname(__FILE__)."/SpeedPHP");
 define("APP_PATH",dirname(__FILE__));
 $spConfig = array(
+
+    'sp_cache' => APP_PATH.'/tmp', //cache dir
+    'controller_path' => APP_PATH.'/controller', //Controller dir
+    'model_path' => APP_PATH.'/model', //Model dir
+
     "db" => array(
         'host' => '173.201.88.17',
         'login' => 'tiedb000001',
-        'password' => 'LIMLabsTie1',
+        'password' => 'GWUcs000001',
         'database' => 'tiedb000001',
     ),
     'view' => array(

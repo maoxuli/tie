@@ -74,4 +74,14 @@ class lib_user extends spModel
 		echo "<html><head><meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\"><script>function sptips(){alert(\"You have no rights, please log in!\");location.href=\"{$url}\";}</script></head><body onload=\"sptips()\"></body></html>";
 		exit;
 	}
+	
+   /**
+     * Redirect without rights
+     */
+    public function acljump2(){ 
+        // Prompt of redirection, code from spController.php
+        $url = spUrl("main","login");
+        echo "<?xml version=\"1.0\" encoding=\"UTF-8\"?><tie><response><code>0</code><message>You have no rights, please log in!</message><location>$url</location></response></tie>";
+        exit;
+    }
 }

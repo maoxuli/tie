@@ -1,11 +1,13 @@
 <?php
 
 /* 
- * Basic functions around a user
- * - Register as a member user
+ * Basic system functions
+ * - Register a user
  * - Login/Logout
  * - View user's information
  * - Update user's information
+ * - Listing users (For administrator)
+ * 
  */
 
 import('md5password.php');
@@ -50,35 +52,6 @@ class main extends spController
         //Not submit, auto redirect to main/register.html
     }
     
-    //Service log  in
-    public function slogin(){
-        
-        $uname = $this->spArgs("uname");
-        $upass = $this->spArgs("upass");
-        
-        $userObj = spClass("lib_user"); //Model lib_user
-        
-        //Check user name and password
-        $rows = array('uname' => $uname, 'upass' => $upass);
-        $results = $userObj->spVerifier($rows);
-            
-        if( false == $results ){ // flase, no illegle data
-        
-            //Log in
-            if( true == $userObj->userLogin($uname, $upass) ){
-                //Failed
-                $this->result = "OK";
-            }
-            else {
-                $this->result = "FALSE";
-            }
-         }
-         else{
-            //User name and password check failed.
-            $this->result = "FAULSE";
-         }    
-    }
-    
 	//Log In
 	public function login(){
 		$userObj = spClass("lib_user"); //Model lib_user
@@ -100,9 +73,9 @@ class main extends spController
 					//Succeed, redirect to proper page
 					$useracl = spClass("spAcl")->get(); //Current user access role
 					if('a' == $useracl ){
-						$this->jump(spUrl("users","listing"));
+						$this->jump(spUrl("main","users"));
 					}else{
-						$this->jump(spUrl("moods","home"));
+						$this->jump(spUrl("moods","index"));
 					}
 				}
 			}else{
@@ -130,15 +103,17 @@ class main extends spController
 	}
 	
 	//View user
-	public function sview(){
-	    //User id
-        $uid = $_SESSION["userinfo"]["uid"];
-        $condition = array("uid"=>$uid);
-        $this->result = spClass("lib_user")->find($condition);
+	public function view(){
+
 	}
 	
 	//Update user
 	public function update(){
+	    
+	}
+	
+	//Listing users
+	public function users(){
 	    
 	}
 } 

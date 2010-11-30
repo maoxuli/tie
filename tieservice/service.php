@@ -2,6 +2,10 @@
 define("SP_PATH",dirname(__FILE__)."/SpeedPHP");
 define("APP_PATH",dirname(__FILE__));
 $spConfig = array(
+    'sp_cache' => APP_PATH.'/tmp', //cache dir
+    'controller_path' => APP_PATH.'/controller2', //Controller dir
+    'model_path' => APP_PATH.'/model', //Model dir
+
     "db" => array(
         'host' => '173.201.88.17',
         'login' => 'tiedb000001',
@@ -11,7 +15,7 @@ $spConfig = array(
     'view' => array(
         'enabled' => TRUE, //Use Smarty view template
         'config' =>array(
-            'template_dir' => APP_PATH.'/tpl', //template dir
+            'template_dir' => APP_PATH.'/tpl2', //template dir
             'compile_dir' => APP_PATH.'/tmp', //compile dir
             'cache_dir' => APP_PATH.'/tmp', //cache dir
             'left_delimiter' => '<{',  // smarty left mark
@@ -30,7 +34,7 @@ $spConfig = array(
     'ext' => array( // Extension set
         'spAcl' => array( // acl extension
             // No rights, use lib_user::acljump()
-            'prompt' => array("lib_user", "acljump"),
+            'prompt' => array("lib_user", "acljump2"),
         ), 
     ),
 );

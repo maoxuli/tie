@@ -5,21 +5,18 @@
  * - Feelings list for choice
  * - Capture mood of a user
  * - View moods of a user
- * - Listing of users' moods
- * - Matching users to a user
+ * - Listing moodes of friends
+ * - Matching moods of users
+ * 
  */
 
 class moods extends spController
 {
-    //Feelings list for choice
-    public function feelings(){
+    
+    //Listing users moods
+    public function index(){
         
     }
-    
-    //List of users' moods
-    public function home(){
-
-    }   
     
     //Capture user's mood
     public function update(){
@@ -30,9 +27,15 @@ class moods extends spController
     public function view(){
         
     }
+
     
-    //Matching users with mood
+    //Matching moods
     public function matching(){
         
     }
+        
+    //Feelings list for choice
+    public function feelings(){
+        
+    } 
 }

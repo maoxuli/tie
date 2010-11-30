@@ -2,27 +2,21 @@
 
 /*
  * Functions around friendship among users
- * - Add friends to a user
- * - Remote friends from a user
- * - listing friends of a user
- * - listing candidate friends of a user 
+ * - Add friend to a user
+ * - Remove friend from a user 
+ * - View friendship of two users
+ * - Update friendship of two users
+ * - Listing friends of a user
+ * 
  */
 
 class friends extends spController
-{
-	//Listing friends
-	public function slisting(){
-	    
-	    $uid = $_SESSION["userinfo"]["uid"];
-	    $condition = array("uid_1"=>$uid);
-	    
-        $this->results = spClass("lib_friend")->findAll($condition);
-	}
-	
-	//Waiting list
-	public function waiting(){
-	    
-	}
+{	
+    
+    //Listing friends of a user
+    public function index() {
+        
+    }
     
 	//Add new friends
 	public function add(){
@@ -34,10 +28,14 @@ class friends extends spController
 
 	}
 	
-	//View friend
-	public function sview(){
-	    $uid = $this->spArgs("uid");
-	    $condition = array("uid"=>$uid);
-        $this->result = spClass("lib_user")->find($condition);
+	//View friendship between two users
+	public function view() {
+	    
 	}
+	
+	//Update friendship between two users
+	public function update() {
+	    
+	}
+
 } 
