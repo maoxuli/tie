@@ -12,9 +12,8 @@
 
 class moods extends spController
 {
-    
-    //Listing users moods
-    public function index(){
+    //Feelings list for choice
+    public function feelings(){
         
     }
     
@@ -27,14 +26,9 @@ class moods extends spController
     public function view(){
         
     }
-
+    
     //Matching moods
     public function matching(){
         
     }
-        
-    //Feelings list for choice
-    public function feelings(){
-        
-    } 
 }

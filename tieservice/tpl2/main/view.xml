@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tie><main><view>
+<response>
+    <code></code>
+    <message></message>
+    <location></location>
+</response>
+<{if $result}>
+<user>
+    <uid><{$result.uid}></uid>
+    <uname><{$result.uname}></uname>
+    <email><{$result.email}></email>
+    <lname><{$result.lname}></lname>
+    <fname><{$result.fname}></fname>
+</user>
+<{/if}>
+</view></main></tie>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tie><moods><feelings>
+<response>
+    <code></code>
+    <message></message>
+    <location></location>
+</response>
+<{foreach from=$results item=result}>
+<feeling>
+    <fid><{$result.fid}></fid>
+    <icon><{$result.icon}></icon>
+    <icon><{$result.description}></icon>
+</feeling>
+<{/foreach}>
+</feelings></moods></tie>

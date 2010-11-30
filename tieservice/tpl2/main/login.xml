@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tie><main><login>
+<response>
+    <code><{$result}></code>
+    <message></message>
+    <location></location>
+</response>
+</login></main></tie>
