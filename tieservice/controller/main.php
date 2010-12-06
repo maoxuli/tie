@@ -1,11 +1,12 @@
 <?php
 
 /* 
- * Basic system functions
+ * Basic functions of current user
  * - Register a user
  * - Login/Logout
  * - View user's information
  * - Update user's information
+ * - Current user's moods management
  * - Listing users (For administrator)
  * 
  */
@@ -13,6 +14,39 @@
 import('md5password.php');
 class main extends spController
 {
+    //Current user's moods management
+    public function index() {
+        
+        $feelingObj = spClass("lib_feeling");
+        $userObj = spClass("lib_user");
+        $moodObj = spClass("lib_mood");
+        $uid = $_SESSION["userinfo"]["uid"];
+        $this->sql_dump = "";
+        
+        //Submit capture feeling
+        if($fid = $this->spArgs("fid")) {
+            
+            $condition = array("uid"=>$uid, "fid"=>$fid);
+            $moodObj->create($condition);
+            $this->sql_dump = $moodObj->dumpSql() . "\n";
+        }
+        
+        //Display homepage for current user
+        //Retrive all feelings, list for choice
+        $this->feelings = $feelingObj->findAll();
+        $this->sql_dump = $this->sql_dump . $feelingObj->dumpSql() . "\n";
+        
+        //Current user's info
+        $condition = array("uid"=>$uid);
+        $this->profile = $userObj->find($condition);
+        $this->sql_dump = $this->sql_dump . $userObj->dumpSql() . "\n";
+        
+        //user's moods data
+        $this->moods = $moodObj->listing($uid, 8);
+        $this->sql_dump = $this->sql_dump . $moodObj->dumpSql();
+        //dump($this->sql_dump);
+    }
+    
     //User Register
     public function register(){
         $userObj = spClass("lib_user"); //Model lib_user, access table of users
@@ -54,9 +88,11 @@ class main extends spController
     
 	//Log In
 	public function login(){
-		$userObj = spClass("lib_user"); //Model lib_user
-		if( $uname = $this->spArgs("uname") ){ //Submit, log in
+	    
+		if($uname = $this->spArgs("uname")){ //Submit, log in
 			$upass = spClass("md5password")->pwvalue(); //Get encipered password via md5password
+			
+			$userObj = spClass("lib_user"); //Model lib_user
 			
 			//Check user name and password
 			$rows = array('uname' => $uname, 'upass' => $upass);
@@ -75,7 +111,7 @@ class main extends spController
 					if('a' == $useracl ){
 						$this->jump(spUrl("main","users"));
 					}else{
-						$this->jump(spUrl("moods","index"));
+						$this->jump(spUrl("main","index"));
 					}
 				}
 			}else{
@@ -104,16 +140,56 @@ class main extends spController
 	
 	//View user
 	public function view(){
-
+        //Current user id
+        $userObj = spClass("lib_user");
+        $uid = $_SESSION["userinfo"]["uid"];
+        $condition = array("uid"=>$uid);
+        $this->profile = $userObj->find($condition);
+        $this->sql_dump = $userObj->dumpSql();
+        //dump($this->sql_dump);
 	}
 	
 	//Update user
 	public function update(){
 	    
+        $userObj = spClass("lib_user");
+	    $uid = $_SESSION["userinfo"]["uid"];
+	    $this->sql_dump = "";
+	    
+	    if($uname = $this->spArgs("uname")) { //Submit update
+	       $email = $this->spArgs("email");
+	       $lname = $this->spArgs("lname");
+	       $fname = $this->spArgs("fname");
+	       $gender = $this->spArgs("gender");
+	       $birthday = $this->spArgs("birthday");
+	       $address = $this->spArgs("address");
+	       $phone = $this->spArgs("phone");
+	       
+	       //Check values
+	       
+	       //
+	       $condition = array("uid"=>$uid);
+	       $row = array("uname"=>$uname, "email"=>$email, "lname"=>$lname, "fname"=>$fname,
+	           "gender"=>$gender, "birthday"=>$birthday, "address"=>$address, "phone"=>$phone);
+	       $userObj->update($condition, $row);
+	       $this->sql_dump = $userObj->dumpSql() . "\n"; 
+	       
+	       //Updata session info and switch to view
+           $_SESSION["userinfo"]["uname"] = $uname;
+           $_SESSION["userinfo"]["email"] = $email;
+	    }
+	    
+	    $condition = array("uid"=>$uid);
+        $this->profile = $userObj->find($condition);
+        $this->sql_dump = $this->sql_dump . $userObj->dumpSql();
+        //dump($this->sql_dump);
 	}
 	
 	//Listing users
 	public function users(){
 	    
+	    $userObj = spClass("lib_user");
+	    $this->results = $userObj->findAll();
+	   
 	}
 } 

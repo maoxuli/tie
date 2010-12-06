@@ -1,0 +1,24 @@
+<{include file="header.html"}>
+<div id="main">
+  <div id="title">
+    <h2>Users Management</h2>
+    <p><a href="<{spUrl c=main a=logout}>">Log out</a></p>
+  </div>
+  <div id="view">
+	<div id="ulist">
+	    <h3>Active users list</h3>
+	    <table>
+            <{foreach from=$results item=result}>
+            <tr>
+                <td><{$result.uid}></td>
+                <td><{$result.uname}></td> 
+                <td><{$result.email}></td> 
+                <td><{$result.fname}></td> 
+                <td><{$result.lname}></td>
+            </tr>
+            <{/foreach}>
+        </table>
+    </div>
+  </div>
+</div>
+<{include file="footer.html"}> 

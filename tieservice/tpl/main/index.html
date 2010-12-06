@@ -1,0 +1,28 @@
+<{include file="header.html"}>
+<div id="main">
+  <div id="title">
+    <h2>Home</h2>
+    <p><a href="<{spUrl c=main a=logout}>">Log out</a></p>
+  </div>
+  <div id="view">
+	<div id="feelings">
+	    <form name="myfeeling" method="post" action="<{spUrl c=main a=index}>">
+	    <p>
+		    <{foreach from=$feelings item=feeling}>
+			<input type="radio" name="fid" value="<{$feeling.fid}>" <{if $feeling.fid==$moods[0].fid}>checked<{/if}>><{$feeling.fname}>
+			<{/foreach}>
+		</p>
+		<p>
+            <input type="submit" name="Submit" value="Submit">
+		</p>
+		</form>
+	</div>
+	<div id="mymoods">
+	    <h3>Recent feelings - <{$profile.fname}> <{$profile.lname}></h3>
+	    <{foreach from=$moods item=mood}>
+        <p><{$mood.time}> <span><{$mood.fname}></span></p>
+        <{/foreach}>
+	</div>
+  </div>
+</div>
+<{include file="footer.html"}> 

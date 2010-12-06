@@ -1,19 +1,23 @@
 <{include file="header.html"}>
 <div id="main">
   <div id="title">
-    <h2>View of user information</h2>
+    <h2>My Account</h2>
     <p><a href="<{spUrl c=main a=logout}>">Log out</a></p>
   </div>
   <div id="view">
-    <h3>User's information</h3>
-  </div>
-  <div id="navi">
-    <ul>
-      <li><a href="<{spUrl c=moods a=index}>">Moods</a></li>
-      <li><a href="<{spUrl c=moods a=matching}>">Matching</li>
-      <li><a href="<{spUrl c=friends a=index}>">Friends</li>
-      <li class="last"><a href="<{spUrl c=main a=view}>">Account</li>
-    </ul>
+	<div id="myprofile">
+	    <h3>User's profile</h3>
+	    <p><span>Member ID:</span> <{$profile.uid}></p>
+	    <p><span>User Name:</span><{$profile.uname}></p>
+	    <p><span>Email:</span><{$profile.email}></p>
+	    <p><span>Last Name:</span><{$profile.lname}></p>
+	    <p><span>First Name:</span><{$profile.fname}></p>
+	    <p><span>Gender:</span><{$profile.gender}></p>
+	    <p><span>Birthday:</span><{$profile.birthday}></p>
+	    <p><span>Address:</span><{$profile.address}></p>
+	    <p><span>Phone:</span><{$profile.phone}></p>
+	    <p><a href="<{spUrl c=main a=update}>">Edit</a></p>
+    </div>
   </div>
 </div>
 <{include file="footer.html"}> 

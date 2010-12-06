@@ -1,19 +1,25 @@
 <{include file="header.html"}>
 <div id="main">
   <div id="title">
-    <h2>Update</h2>
+    <h2>My Account</h2>
     <p><a href="<{spUrl c=main a=logout}>">Log out</a></p>
   </div>
   <div id="view">
-    <h3>update user's information</h3>
-  </div>
-  <div id="navi">
-    <ul>
-      <li><a href="<{spUrl c=moods a=index}>">Moods</a></li>
-      <li><a href="<{spUrl c=moods a=matching}>">Matching</li>
-      <li><a href="<{spUrl c=friends a=index}>">Friends</li>
-      <li class="last"><a href="<{spUrl c=main a=view}>">Account</li>
-    </ul>
+    <div id="edtprofile">
+	    <h3>Edit user's profile</h3>
+	    <form name="profile" method="post" action="<{spUrl c=main a=update}>">
+	        <p><span>User ID:</span> <{$profile.uid}></span></p>
+	        <p><span>User Name:</span> <input type="text" name="uname" value="<{$profile.uname}>"></p>
+	        <p><span>Email:</span> <input type="text" name="email" value="<{$profile.email}>"></p>
+	        <p><span>Last Name:</span> <input type="text" name="lname" value="<{$profile.lname}>"></p>
+	        <p><span>First Name:</span> <input type="text" name="fname" value="<{$profile.fname}>"></p>
+	        <p><span>Gender:</span> <input type="text" name="gender" value="<{$profile.gender}>"></p>
+	        <p><span>Birthday:</span> <input type="text" name="birthday" value="<{$profile.birthday}>"></p>
+	        <p><span>Address:</span> <input type="text" name="address" value="<{$profile.address}>"></p>
+	        <p><span>Phone:</span> <input type="text" name="phone" value="<{$profile.phone}>"></p>       
+	        <p><input type="submit" value="Submit" /> <a href="<{spUrl c=main a=view}>">Return</a></p>
+	    </form>
+	 </div>
   </div>
 </div>
 <{include file="footer.html"}> 

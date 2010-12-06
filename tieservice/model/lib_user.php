@@ -34,7 +34,7 @@ class lib_user extends spModel
 		);
 		// dump($conditions);
 		// Log In
-		if( $result = $this->find($conditions) ){ 
+		if( $result = $this->find($conditions, null, "uid, uname, email, aclrole") ){ 
 			// Log in successfully. Get user role
 			spClass('spAcl')->set($result['aclrole']); // Set user role in ACL
 			$_SESSION["userinfo"] = $result; //Set user info in session

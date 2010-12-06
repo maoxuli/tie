@@ -1,0 +1,16 @@
+<{include file="header.html"}>
+<div id="main">
+  <div id="title">
+    <h2>Moods Matching</h2>
+    <p><a href="<{spUrl c=main a=logout}>">Log out</a></p>
+  </div>
+  <div id="view">
+    <div id="mymatching">
+        <h3>Who matching me?</h3>
+        <{foreach from=$results item=result}>
+        <p><{$result.time}> <span><{$result.uname}></span> <span><{$result.fname}></span></p>
+        <{/foreach}>
+    </div>
+  </div>
+</div>
+<{include file="footer.html"}> 

@@ -47,7 +47,34 @@ body {
 	min-height:350px;
 	text-align:left;
 }
-#main #navi {
+#view #feelings {
+	padding-left:10px;
+	border:1px solid #99f;
+}
+#view #mymoods p, #view #mymatching p {
+	border-bottom: 1px dotted #ccc;
+}
+#view #mymoods p span {
+    margin-left:50px;
+}
+#view h3 {
+	border-bottom:1px solid #000;
+}	
+#view #myprofile p {
+	border-bottom:1px dotted #ccc;
+}
+#view #myprofile p span, #view #edtprofile p span {
+	font-style:italic;
+	margin-right:10px;
+}
+#view #mymatching p span {
+	margin-left:45px;
+}
+#view #ulist table tr {
+	height:30px;
+	border-bottom:1px dotted #ccc;
+}
+#navi {
 	height:40px;
 	background:#00f;
 }
@@ -60,7 +87,7 @@ body {
 	padding:0 15px;
 	border-right:1px solid #999;
 	line-height:40px;
-	font-size:18px;
+	font-size:14px;
 	color:#ccc;
 }
 #navi ul .last {

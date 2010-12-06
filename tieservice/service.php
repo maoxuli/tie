@@ -9,7 +9,7 @@ $spConfig = array(
     "db" => array(
         'host' => '173.201.88.17',
         'login' => 'tiedb000001',
-        'password' => 'LIMLabsTie1',
+        'password' => 'GWUcs000001',
         'database' => 'tiedb000001',
     ),
     'view' => array(
