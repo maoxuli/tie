@@ -83,15 +83,36 @@ body {
 	height:25px;
 	border-bottom:1px dotted #ccc;
 }
-#view #myprofile table input {
-	width:200px;
+#view #edtprofile td {
+	padding-right:10px;
+	height:25px;
 }
-#view #ulist table tr {
+#view #edtprofile table input {
+	width:160px;
+}
+#view #ulist table td {
 	height:30px;
+	max-width:100px;
+	padding:0;
+	overflow:hidden;
 	border-bottom:1px dotted #ccc;
+	border-right:1px dotted #ccc;
+}
+#view #ulist table th {
+	text-align:center;
+	background:#ccc;
 }
 #view #ulist a:link {
 	text-decoration:none;
+}
+#view #mymoods #mycurve{
+    width:100%;
+    height:100px;
+    margin-top:20px;
+    margin-bottom:20px;
+    border-left:1px solid #000;
+    border-bottom:1px solid #000;
+    background:url("bg.gif") repeat-x;
 }
 #navi {
 	height:40px;

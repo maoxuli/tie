@@ -23,9 +23,28 @@
 	</div>
 	<div id="mymoods">
 	    <h3>Recent feelings - <{$profile.fname}> <{$profile.lname}></h3>
+	    <script src="images/gov.Graphic.js"></script>
+	     <script>
+	         window.onload=function(){
+	             var data=new period([<{$moods[9].fid}>,
+	                                  <{$moods[8].fid}>,
+	                                  <{$moods[7].fid}>,
+	                                  <{$moods[6].fid}>,
+	                                  <{$moods[5].fid}>,
+	                                  <{$moods[4].fid}>,
+	                                  <{$moods[3].fid}>,
+	                                  <{$moods[2].fid}>,
+	                                  <{$moods[1].fid}>,
+	                                  <{$moods[0].fid}>],//
+	                 [10,9,8,7,6,5,4,3,2,1]//
+	                 );
+	             new gov.Graphic(data,"mycurve",{ pointColor:"#3366ff",lineColor:"#33ffff"});
+	         }
+	     </script>
+	    <div id="mycurve"></div>	    
 	    <table>
-	    <{foreach from=$moods item=mood}>
-        <tr><td><{$mood.time}></td><td><{$mood.fid}></td><td><{$mood.fname}></td></tr>
+	    <{foreach from=$moods item=mood name=name}>
+        <tr><td><{$smarty.foreach.name.iteration}></td><td><{$mood.time}></td><td><{$mood.fid}></td><td><{$mood.fname}></td></tr>
         <{/foreach}>
         </table>
 	</div>

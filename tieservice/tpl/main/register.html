@@ -6,27 +6,21 @@
   </div>
   <div id="view">
 	  <form action="<{spUrl c=main a=register}>" method="post" onsubmit="return aclcode();">
-	    <p>User Name<br />
-	      <input type="text" name="uname" id="uname" />
-	    </p>
-	    <p>Password<br />
-		  <input type="password" name="upass" id="upass" />
-	    </p>
-	    <p>Confirm Password<br />
-	      <input type="password" name="upass2" id="upass2" />
-	    </p>
-	    <p>Email<br />
-	      <input type="text" name="email" id="email" />
-	    </p>  
-	    <p>Last Name<br />
-          <input type="text" name="lname" id="lname" />
-        </p> 
-        <p>First Name<br />
-          <input type="text" name="fname" id="fname" />
-        </p>  
+	    <table>
+		    <tr><td>User Name</td><td><input type="text" name="uname" id="uname" />  (*, 4-8 size)</td></tr>
+	        <tr><td>Password</td><td><input type="password" name="upass" id="upass" /> (*, 4-8 size)</td></tr>
+	        <tr><td>Confirm Password</td><td><input type="password" name="upass2" id="upass2" />  (*, 4-8 size)</td></tr>
+	        <tr><td>Email</td><td><input type="text" name="email" id="email" /> (*, xx@xx.xx)</td></tr>
+	        <tr><td>Last Name</td><td><input type="text" name="lname" id="lname" /> (*)</td></tr>
+	        <tr><td>First Name</td><td><input type="text" name="fname" id="fname" /> (*)</td></tr>
+	        <tr><td>Gender</td><td><input type="text" name="gender" id="gender" /> (male/female)</td></tr>
+	        <tr><td>Birthday</td><td><input type="text" name="birthday" id="birthday" /> (yyyy-mm-dd)</td></tr>
+	        <tr><td>Address</td><td><input type="text" name="address" id="address" /></td></tr>
+	        <tr><td>Phone number</td><td><input type="text" name="phone" id="phone" /></td></tr>
+		</table>
 	    <p>
-	      <input type="submit" name="register" id="register" value="Submit" />
-	    </p>
+          <input type="submit" name="register" id="register" value="Submit" />
+        </p>
 	  </form>
   </div> 
 </div>

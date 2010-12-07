@@ -8,13 +8,20 @@
 	<div id="ulist">
 	    <h3>Active users list</h3>
 	    <table>
+	        <tr>
+	           <th>id</th>
+	           <th>uname</th>
+	           <th>email</th>
+	           <th>Name</th>
+	           <th>link</th>
+	        </tr>
             <{foreach from=$results item=result}>
             <tr>
                 <td><{$result.uid}></td>
                 <td><{$result.uname}></td> 
                 <td><{$result.email}></td> 
-                <td><{$result.fname}></td> 
-                <td><{$result.lname}></td>
+                <td><{$result.fname}> <{$result.lname}></td> 
+                <td><a href="<{spUrl c=main a=delete uid=$result.uid}>">Delete</a></td>
             </tr>
             <{/foreach}>
         </table>

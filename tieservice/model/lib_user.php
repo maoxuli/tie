@@ -8,16 +8,56 @@ class lib_user extends spModel
 		"rules" => array( //Rules
 			'uname' => array(  //Only verify user name, because password is encipered.
 				'notnull' => TRUE, //Not NULL
-				'minlength' => 2,  //User name length > 1
-				'maxlength' => 12  //User name length < 12
+				'minlength' => 4,  //User name length > 1
+				'maxlength' => 8  //User name length < 12
 			),
+			'upass' => array(
+                 'minlength' => 4,
+                 'maxlength' => 8
+            ),
+            'upass2' => array(
+                 'equalto' => 'upass'
+            ),
+			'email' => array(
+			     'notnull' => TRUE,
+			     'email' => TRUE,
+			),
+			'lname' => array(
+			     'notnull' => TRUE
+			),
+			'fname' => array(
+			     'notnull' => TRUE
+			),
+			'birthday' => array(
+			     'istime' => TRUE,
+			)
 		),
 		"messages" => array( //Prompt
 			'uname' => array(
 				'notnull' => "User Name can not be NULL",
-				'minlength' => "Size of User Name must larger than 1",
-				'maxlength' => "Size of User Name must less than 12"
+				'minlength' => "Size of User Name must larger than 4",
+				'maxlength' => "Size of User Name must less than 8"
 			),
+			'upass' => array(
+                 'minlength' => "Size of password must larger than 4",
+                 'maxlength' => "Size of password must less than 8"
+            ),
+            'upass2' => array(
+                 'equalto' => "Password comfirmation error"
+            ),
+			'email' => array(
+			     'notnull' => "Emaill address can not be NULL",
+			     'email' => "Email address format error"
+			),
+			'lname' => array(
+			     'notnull' => "Last name can NOT be NULL"
+			),
+			'fname' => array(
+			     'notnull' => "First name can not be NULL"
+			),
+			'birthday' => array(
+			     'istime' => "Birthday format error"
+			)
 		)
 	);
 	
@@ -44,25 +84,11 @@ class lib_user extends spModel
 			return false;
 		}
 	}
-	
-    /**
-     * Function of Register
-     *
-     * @param uname    User Name
-     * @param upass    Password, cipered password with MD5
-     * @param email    Email address
-     */
-    public function userRegister($uname, $upass, $email, $lname, $fname){ 
-        $row = array(
-            "uname"=>$uname,
-            "email"=>$email,
-            "upass"=>md5($upass),
-            "aclrole"=>"m",
-            "lname"=>lname,
-            "fname"=>fname,
-        );
-        parent::create($row);
-        return true;
+    
+    public function create($row){
+        $row["upass"] = md5($row["upass"]);
+        $row = array_merge($row, array("aclrole"=>'m'));
+        return parent::create($row);
     }
 	
 	/**

@@ -57,15 +57,26 @@ class main extends spController
             $email = $this->spArgs("email");
             $lname = $this->spArgs("lname");
             $fname = $this->spArgs("fname");
-            
+            $birthday = $this->spArgs("birthday");
+            $gender = $this->spArgs("gender");
+            $address = $this->spArgs("address");
+            $phone = $this->spArgs("phone");
+             
             //Check user name and password and email
-            $rows = array('uname' => $uname, 'upass' => $upass, 'upass2' => $upass2, 'email' => $email);
-            $results = $userObj->spVerifier($rows);
-            
+            $row = array('uname' => $uname, 
+                          'upass' => $upass, 
+                          'upass2' => $upass2, 
+                          'email' => $email,
+                          'lname' => $lname,
+                          'fname' => $fname,
+                          'birthday' => $birthday,
+                          );
+            $results = $userObj->spVerifier($row);
             if( false == $results ){ // flase, no illegle data
             
                 //Register
-                $res = $userObj->userRegister($uname, $upass, $email, $lname, $fname);
+                $row = array_merge($row, array("gender"=>$gender,"address"=>$address,"phone"=>$phone));
+                $res = $userObj->create($row);
                 $_SESSION["sql_dump"][]= $userObj->dumpSql();
                 if( false == $res ){
                     //Failed, return to register page
@@ -101,7 +112,6 @@ class main extends spController
 			
 			//Check user name and password
 			$rows = array('uname' => $uname, 'upass' => $upass);
-			$results = $userObj->spVerifier($rows);
 			
 			if( false == $results ){ // flase, no illegle data
 			
@@ -174,21 +184,41 @@ class main extends spController
 	       $phone = $this->spArgs("phone");
 	       
 	       //Check values
-	       
-	       //
-	       $condition = array("uid"=>$uid);
-	       $row = array("uname"=>$uname, "email"=>$email, "lname"=>$lname, "fname"=>$fname,
-	           "gender"=>$gender, "birthday"=>$birthday, "address"=>$address, "phone"=>$phone);
-	       $res = $userObj->update($condition, $row);
-	       $_SESSION["sql_dump"][]= $userObj->dumpSql();
-	       
-	       if(true == $res)
-	       {      
-    	       //Updata session info and switch to view
-               $_SESSION["userinfo"]["uname"] = $uname;
-               $_SESSION["userinfo"]["email"] = $email;
-               $this->jump(spUrl("main","view"));
-	       }
+           $row = array('uname' => $uname, 
+              'upass' => "dummy", 
+              'upass2' => "dummy", 
+              'email' => $email,
+              'lname' => $lname,
+              'fname' => $fname,
+              'birthday' => $birthday,
+              );
+	       $results = $userObj->spVerifier($row);
+           if( false == $results ){ // flase, no illegle data
+            
+    	       //Update
+    	       $condition = array("uid"=>$uid);
+    	       $row = array("uname"=>$uname, "email"=>$email, "lname"=>$lname, "fname"=>$fname,
+    	           "gender"=>$gender, "birthday"=>$birthday, "address"=>$address, "phone"=>$phone);
+    	       $res = $userObj->update($condition, $row);
+    	       $_SESSION["sql_dump"][]= $userObj->dumpSql();
+    	       
+    	       if(true == $res)
+    	       {      
+        	       //Updata session info and switch to view
+                   $_SESSION["userinfo"]["uname"] = $uname;
+                   $_SESSION["userinfo"]["email"] = $email;
+                   $this->jump(spUrl("main","view"));
+    	       }
+           }else{
+                //User name and password check failed.
+                //dump($results);
+                foreach($results as $item){ //Rules
+                    foreach($item as $msg){ 
+                        // Errors, first is enough
+                        $this->error($msg,spUrl("main","update"));
+                    }
+                }
+            }
 	    }
 	    
 	    $condition = array("uid"=>$uid);
@@ -205,5 +235,16 @@ class main extends spController
 	    $this->results = $userObj->spPager($this->spArgs("page",1),10)->findAll();
 	    $_SESSION["sql_dump"][]= $userObj->dumpSql();
 	    $this->pager = $userObj->spPager()->getPager();
+	}
+	
+	//delete user
+	public function delete(){
+	    $userObj = spClass("lib_user");
+	    $uid = $this->spArgs("uid");
+	    $condition = array("uid"=>$uid);
+	    $userObj->delete($condition);
+	    $_SESSION["sql_dump"][]= $userObj->dumpSql();
+	    
+	    $this->jump(spUrl("main","users"));
 	}
 } 

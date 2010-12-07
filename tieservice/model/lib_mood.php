@@ -7,11 +7,6 @@ class lib_mood extends spModel
     
     //Automatic add datetime
     public function create($row){
-
-        //$time = date("Y-m-d H:i:s");
-        //$sql = "INSERT INTO {$this->table} (uid,fid,time) VALUES ('{$uid}','{$fid}','{$time}')";
-        
-        //$this->_db->exec($sql);
         $row = array_merge($row, array("time"=>date("Y-m-d H:i:s")));
         return parent::create($row);
     }
