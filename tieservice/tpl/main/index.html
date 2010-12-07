@@ -7,21 +7,27 @@
   <div id="view">
 	<div id="feelings">
 	    <form name="myfeeling" method="post" action="<{spUrl c=main a=index}>">
-	    <p>
+	    <table>
+	        <tr>
+            <{foreach from=$feelings item=feeling}>
+              <td><{$feeling.fname}></td>
+            <{/foreach}>
+            </tr>
+		    <tr>
 		    <{foreach from=$feelings item=feeling}>
-			<input type="radio" name="fid" value="<{$feeling.fid}>" <{if $feeling.fid==$moods[0].fid}>checked<{/if}>><{$feeling.fname}>
-			<{/foreach}>
-		</p>
-		<p>
-            <input type="submit" name="Submit" value="Submit">
-		</p>
+		      <td><input type="submit" name="fid" value="<{$feeling.fid}>"></td>
+            <{/foreach}>
+            </tr>
+	    </table>
 		</form>
 	</div>
 	<div id="mymoods">
 	    <h3>Recent feelings - <{$profile.fname}> <{$profile.lname}></h3>
+	    <table>
 	    <{foreach from=$moods item=mood}>
-        <p><{$mood.time}> <span><{$mood.fname}></span></p>
+        <tr><td><{$mood.time}></td><td><{$mood.fid}></td><td><{$mood.fname}></td></tr>
         <{/foreach}>
+        </table>
 	</div>
   </div>
 </div>

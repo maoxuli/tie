@@ -18,6 +18,21 @@
             </tr>
             <{/foreach}>
         </table>
+        <p class="pages"> <{if $pager}>
+        Total <{$pager.total_count}> users in <{$pager.total_page}> pages (<{$pager.page_size}> per page):
+        <!--Current is not the first page, show "First Page" and "Previous Pages"-->
+        <{if $pager.current_page != $pager.first_page}> 
+        <a href="<{spUrl c=main a=users page=$pager.first_page}>">|&lt;</a> <a href="<{spUrl c=main a=users page=$pager.prev_page}>">&lt;&lt;</a>
+        <{/if}>
+        <!--Loop for pages, no link for current page-->
+        <{foreach from=$pager.all_pages item=thepage}>
+        <{if $thepage != $pager.current_page}> <a href="<{spUrl c=main a=users page=$thepage}>"><{$thepage}></a> <{else}> <b><{$thepage}></b> <{/if}>
+        <{/foreach}>
+        <!--Current is not the last page, show "Next Page" and "Last Pages"-->
+        <{if $pager.current_page != $pager.last_page}>
+        <a href="<{spUrl c=main a=users page=$pager.next_page}>">&gt;&gt;</a> <a href="<{spUrl c=main a=users page=$pager.last_page}>">&gt;|</a> 
+        <{/if}>
+        <{/if}></p>
     </div>
   </div>
 </div>

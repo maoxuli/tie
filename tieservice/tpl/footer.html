@@ -6,6 +6,11 @@
     <li class="last"><a href="<{spUrl c=main a=view}>">My Account</a></li>
   </ul>
 </div>
+<div id="sqlview">
+	<{section name=n loop=$smarty.session.sql_dump step=-1}>
+	<p><{$smarty.session.sql_dump[n]}></p>
+	<{/section}>
+</div>
 <div id="footer">
   <p>(C) 2010, All rights reserved.</p>
   <p>Developed by Maoxu Li &amp; Yi Zhang</p>

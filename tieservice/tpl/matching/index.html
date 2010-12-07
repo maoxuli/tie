@@ -7,9 +7,15 @@
   <div id="view">
     <div id="mymatching">
         <h3>Who matching me?</h3>
+        <table>
         <{foreach from=$results item=result}>
-        <p><{$result.time}> <span><{$result.uname}></span> <span><{$result.fname}></span></p>
+        <tr>
+            <td><{$result.first_name}> <{$result.last_name}></td> 
+            <td><{$result.fname}></td>
+            <td><{$result.time}></td>
+        </tr>
         <{/foreach}>
+        </table>
     </div>
   </div>
 </div>

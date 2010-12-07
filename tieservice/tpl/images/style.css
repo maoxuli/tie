@@ -48,31 +48,50 @@ body {
 	text-align:left;
 }
 #view #feelings {
-	padding-left:10px;
+	padding-top:10px;
+	padding-bottom:10px;
 	border:1px solid #99f;
 }
-#view #mymoods p, #view #mymatching p {
-	border-bottom: 1px dotted #ccc;
+#view #feelings table {
+	width:100%;
+	text-align:center;
 }
-#view #mymoods p span {
-    margin-left:50px;
+#view #feelings table td {
+	width:20%;	
+}
+#view #feelings input {
+    width: 50px; 
+}
+#view #mymoods td {
+    padding-right:20px;
+    height:25px;
+    border-bottom:1px dotted #ccc;
 }
 #view h3 {
 	border-bottom:1px solid #000;
 }	
-#view #myprofile p {
+#view #mymatching td {
+	padding-right:20px;
+	height:25px;
+    border-bottom:1px dotted #ccc;
+}
+#view table {
+	width:100%;
+}
+#view #myprofile td {
+	padding-right:10px;
+	height:25px;
 	border-bottom:1px dotted #ccc;
 }
-#view #myprofile p span, #view #edtprofile p span {
-	font-style:italic;
-	margin-right:10px;
-}
-#view #mymatching p span {
-	margin-left:45px;
+#view #myprofile table input {
+	width:200px;
 }
 #view #ulist table tr {
 	height:30px;
 	border-bottom:1px dotted #ccc;
+}
+#view #ulist a:link {
+	text-decoration:none;
 }
 #navi {
 	height:40px;
@@ -99,6 +118,13 @@ body {
 }
 #navi ul li a:hover {
 	color:#fff;
+}
+#sqlview {
+	border:1px solid #00f;
+	text-align:left;
+}
+#sqlview p {
+	border-bottom:1px dotted #ccc;
 }
 #footer {
 	clear:both;

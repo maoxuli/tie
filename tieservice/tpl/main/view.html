@@ -7,15 +7,17 @@
   <div id="view">
 	<div id="myprofile">
 	    <h3>User's profile</h3>
-	    <p><span>Member ID:</span> <{$profile.uid}></p>
-	    <p><span>User Name:</span><{$profile.uname}></p>
-	    <p><span>Email:</span><{$profile.email}></p>
-	    <p><span>Last Name:</span><{$profile.lname}></p>
-	    <p><span>First Name:</span><{$profile.fname}></p>
-	    <p><span>Gender:</span><{$profile.gender}></p>
-	    <p><span>Birthday:</span><{$profile.birthday}></p>
-	    <p><span>Address:</span><{$profile.address}></p>
-	    <p><span>Phone:</span><{$profile.phone}></p>
+	    <table>
+	    <tr><td>Member ID:</td><td><{$profile.uid}></td></tr>
+	    <tr><td>User Name:</td><td><{$profile.uname}></td></tr>
+	    <tr><td>Email:</td><td><{$profile.email}></td></tr>
+	    <tr><td>Last Name:</td><td><{$profile.lname}></td></tr>
+	    <tr><td>First Name:</td><td><{$profile.fname}></td></tr>
+	    <tr><td>Gender:</td><td><{$profile.gender}></td></tr>
+	    <tr><td>Birthday:</td><td><{$profile.birthday}></td></tr>
+	    <tr><td>Address:</td><td><{$profile.address}></td></tr>
+	    <tr><td>Phone:</td><td><{$profile.phone}></td></tr>
+	    </table>
 	    <p><a href="<{spUrl c=main a=update}>">Edit</a></p>
     </div>
   </div>

@@ -16,40 +16,41 @@ class main extends spController
 {
     //Current user's moods management
     public function index() {
-        
+                                                        
         $feelingObj = spClass("lib_feeling");
         $userObj = spClass("lib_user");
         $moodObj = spClass("lib_mood");
         $uid = $_SESSION["userinfo"]["uid"];
-        $this->sql_dump = "";
-        
+        $_SESSION["sql_dump"][]="================================================";
+                        
         //Submit capture feeling
         if($fid = $this->spArgs("fid")) {
             
-            $condition = array("uid"=>$uid, "fid"=>$fid);
-            $moodObj->create($condition);
-            $this->sql_dump = $moodObj->dumpSql() . "\n";
+            $row = array("uid"=>$uid, "fid"=>$fid);
+            $moodObj->create($row);
+            $_SESSION["sql_dump"][]= $moodObj->dumpSql();
         }
         
         //Display homepage for current user
         //Retrive all feelings, list for choice
         $this->feelings = $feelingObj->findAll();
-        $this->sql_dump = $this->sql_dump . $feelingObj->dumpSql() . "\n";
+        $_SESSION["sql_dump"][]= $userObj->dumpSql();
         
         //Current user's info
         $condition = array("uid"=>$uid);
         $this->profile = $userObj->find($condition);
-        $this->sql_dump = $this->sql_dump . $userObj->dumpSql() . "\n";
+        $_SESSION["sql_dump"][]= $userObj->dumpSql();
         
         //user's moods data
-        $this->moods = $moodObj->listing($uid, 8);
-        $this->sql_dump = $this->sql_dump . $moodObj->dumpSql();
-        //dump($this->sql_dump);
+        $this->moods = $moodObj->listing($uid, 10);
+        $_SESSION["sql_dump"][]= $userObj->dumpSql();
     }
     
     //User Register
     public function register(){
         $userObj = spClass("lib_user"); //Model lib_user, access table of users
+        $_SESSION["sql_dump"][]="================================================";
+                                
         if( $uname = $this->spArgs("uname") ){ //Submit, register
             $upass = $this->spArgs("upass");
             $upass2 = $this->spArgs("upass2");
@@ -64,12 +65,14 @@ class main extends spController
             if( false == $results ){ // flase, no illegle data
             
                 //Register
-                if( false == $userObj->userRegister($uname, $upass, $email, $lname, $fname) ){
+                $res = $userObj->userRegister($uname, $upass, $email, $lname, $fname);
+                $_SESSION["sql_dump"][]= $userObj->dumpSql();
+                if( false == $res ){
                     //Failed, return to register page
                     $this->error("Register failed! Please try again.", spUrl("main","register"));
                     
                 }else{
-                    //Succeed, redirect to proper page
+                    //Succeed, redirect to proper page                    
                     $this->jump(spUrl("main","login"));
                 }
             }else{
@@ -89,6 +92,8 @@ class main extends spController
 	//Log In
 	public function login(){
 	    
+        $_SESSION["sql_dump"][]="================================================";
+	    	    	    	    
 		if($uname = $this->spArgs("uname")){ //Submit, log in
 			$upass = spClass("md5password")->pwvalue(); //Get encipered password via md5password
 			
@@ -101,7 +106,9 @@ class main extends spController
 			if( false == $results ){ // flase, no illegle data
 			
 				//Log in
-				if( false == $userObj->userLogin($uname, $upass) ){
+				$res = $userObj->userLogin($uname, $upass);
+				$_SESSION["sql_dump"][]= $userObj->dumpSql();
+				if( false == $res ){
 					//Failed, return to login page
 					$this->error("User Name or Password is wrong!", spUrl("main","login"));
 					
@@ -125,7 +132,7 @@ class main extends spController
 				}
 			}
 		}
-		//Not submit, auto redirect to main/login.html
+		//Not submit, auto redirect to main/login.html		
 	}
 	
 	//Log out
@@ -143,10 +150,11 @@ class main extends spController
         //Current user id
         $userObj = spClass("lib_user");
         $uid = $_SESSION["userinfo"]["uid"];
+        $_SESSION["sql_dump"][]="================================================";
+                                
         $condition = array("uid"=>$uid);
         $this->profile = $userObj->find($condition);
-        $this->sql_dump = $userObj->dumpSql();
-        //dump($this->sql_dump);
+        $_SESSION["sql_dump"][]= $userObj->dumpSql();
 	}
 	
 	//Update user
@@ -154,8 +162,8 @@ class main extends spController
 	    
         $userObj = spClass("lib_user");
 	    $uid = $_SESSION["userinfo"]["uid"];
-	    $this->sql_dump = "";
-	    
+        $_SESSION["sql_dump"][]="================================================";
+	    	    	                
 	    if($uname = $this->spArgs("uname")) { //Submit update
 	       $email = $this->spArgs("email");
 	       $lname = $this->spArgs("lname");
@@ -171,25 +179,31 @@ class main extends spController
 	       $condition = array("uid"=>$uid);
 	       $row = array("uname"=>$uname, "email"=>$email, "lname"=>$lname, "fname"=>$fname,
 	           "gender"=>$gender, "birthday"=>$birthday, "address"=>$address, "phone"=>$phone);
-	       $userObj->update($condition, $row);
-	       $this->sql_dump = $userObj->dumpSql() . "\n"; 
+	       $res = $userObj->update($condition, $row);
+	       $_SESSION["sql_dump"][]= $userObj->dumpSql();
 	       
-	       //Updata session info and switch to view
-           $_SESSION["userinfo"]["uname"] = $uname;
-           $_SESSION["userinfo"]["email"] = $email;
+	       if(true == $res)
+	       {      
+    	       //Updata session info and switch to view
+               $_SESSION["userinfo"]["uname"] = $uname;
+               $_SESSION["userinfo"]["email"] = $email;
+               $this->jump(spUrl("main","view"));
+	       }
 	    }
 	    
 	    $condition = array("uid"=>$uid);
         $this->profile = $userObj->find($condition);
-        $this->sql_dump = $this->sql_dump . $userObj->dumpSql();
-        //dump($this->sql_dump);
+        $_SESSION["sql_dump"][]= $userObj->dumpSql();
 	}
 	
 	//Listing users
 	public function users(){
 	    
 	    $userObj = spClass("lib_user");
-	    $this->results = $userObj->findAll();
-	   
+        $_SESSION["sql_dump"][]="================================================";
+	    	    	    
+	    $this->results = $userObj->spPager($this->spArgs("page",1),10)->findAll();
+	    $_SESSION["sql_dump"][]= $userObj->dumpSql();
+	    $this->pager = $userObj->spPager()->getPager();
 	}
 } 
