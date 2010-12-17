@@ -132,7 +132,7 @@ public class HttpService implements Service {
 	
 	public boolean login(String credential) {
 		
-		String result = postHttpRequest("/service.php?c=main&a=slogin", credential);
+		String result = postHttpRequest("/service.php?c=main&a=login", credential);
 		
 		try{
 			//XML parser factory
@@ -163,7 +163,7 @@ public class HttpService implements Service {
 	//Get current user
 	public String viewUser() {
 		
-		return getHttpContent("/service.php?c=main&a=sview");
+		return getHttpContent("/service.php?c=main&a=view");
 	}
 	
 	//Update current user
@@ -196,7 +196,7 @@ public class HttpService implements Service {
 	//Friends management: Get Friends list
 	public String getFriends() {
 		
-		return getHttpContent("/service.php?c=friends&a=slisting");
+		return getHttpContent("/service.php?c=friends&a=listing");
 	}
 	
 	//Friends management: Get waiting list

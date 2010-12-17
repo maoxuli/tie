@@ -26,8 +26,8 @@ $spConfig = array(
         'auto_display_sep' => "/", //Link pattern, "/" or "_"
         'auto_display_suffix' => '.html',
     ),
-    'launch' => array( 
-        'router_prefilter' => array( 
+    'launch' => array(
+        'router_prefilter' => array(
             array('spAcl','mincheck') // Limited authentication
             //array('spAcl','maxcheck') // restrict authentication
          )
@@ -36,8 +36,8 @@ $spConfig = array(
         'spAcl' => array( // acl extension
             // No rights, use lib_user::acljump()
             'prompt' => array("lib_user", "acljump"),
-        ), 
+        ),
     ),
 );
-require(SP_PATH."/SpeedPHP.php"); 
+require(SP_PATH."/SpeedPHP.php");
 spRun();

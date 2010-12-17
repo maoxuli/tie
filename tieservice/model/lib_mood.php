@@ -3,7 +3,6 @@ class lib_mood extends spModel
 {
     var $pk = "mid"; //primative key
     var $table = "moods"; // table
-
     
     //Automatic add datetime
     public function create($row){

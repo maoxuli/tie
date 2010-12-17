@@ -6,13 +6,14 @@
   </div>
   <div id="view">
     <div id="mymatching">
-        <h3>Who matching me?</h3>
-        <table>
+        <h3>Who is matching me?</h3>
+        <table> 
         <{foreach from=$results item=result}>
         <tr>
             <td><{$result.first_name}> <{$result.last_name}></td> 
             <td><{$result.fname}></td>
             <td><{$result.time}></td>
+            <td><a href="<{spUrl c=friends a=add uid=$result.uid}>">Add</a></td>
         </tr>
         <{/foreach}>
         </table>

@@ -1,19 +1,41 @@
 <{include file="header.html"}>
+<script src="images/gov.Graphic.js"></script>
 <div id="main"> 
   <div id="title">
     <h2>My Friends</h2>
     <p><a href="<{spUrl c=main a=logout}>">Log out</a></p>
   </div>
   <div id="view">
-    <h3>List of friends with actions.</h3>
-  </div>
-  <div id="navi">
-    <ul>
-      <li><a href="<{spUrl c=moods a=index}>">Moods</a></li>
-      <li><a href="<{spUrl c=moods a=matching}>">Matching</li>
-      <li><a href="<{spUrl c=friends a=index}>">Friends</li>
-      <li class="last"><a href="<{spUrl c=main a=view}>">Account</li>
-    </ul>
+    <div id="myfriends">
+    <h3>Friends' recent feelings</h3>
+	<{foreach from=$friends item=friend name=name}>
+	   <table><tr>
+	       <td><{$smarty.foreach.name.iteration}></td>
+	       <td><{$friend.uname}></td>
+	       <td><{$friend.fname}> <{$friend.lname}></td>
+	       <td><a href="<{spUrl c=friends a=remove uid=$friend.uid}>">Remove</a></td>
+	   </tr></table>
+	   <div id="curve<{$friend.uid}>" class="moodscurve"></div>
+            <script>
+                //Why loop does not work?
+                 y0 = <{$friend.moods[0].fid}>; 
+                 y1 = <{$friend.moods[1].fid}>;
+                 y2 = <{$friend.moods[2].fid}>;
+                 y3 = <{$friend.moods[3].fid}>;
+                 y4 = <{$friend.moods[4].fid}>;
+                 y5 = <{$friend.moods[5].fid}>;
+                 y6 = <{$friend.moods[6].fid}>;
+                 y7 = <{$friend.moods[7].fid}>;
+                 y8 = <{$friend.moods[8].fid}>;
+                 y9 = <{$friend.moods[9].fid}>;                 
+                 
+                 var data=new period([y9,y8,y7,y6,y5,y4,y3,y2,y1,y0],
+                                     [10,9,8,7,6,5,4,3,2,1]);
+                 new gov.Graphic(data,"curve<{$friend.uid}>",{ pointColor:"#3366ff",lineColor:"#33ffff", distime:false});
+            </script>
+        <div id="mycurve"></div>
+	<{/foreach}>
+    </div>
   </div>
 </div>
 <{include file="footer.html"}> 

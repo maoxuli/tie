@@ -21,7 +21,7 @@ class main extends spController
         $userObj = spClass("lib_user");
         $moodObj = spClass("lib_mood");
         $uid = $_SESSION["userinfo"]["uid"];
-        $_SESSION["sql_dump"][]="================================================";
+        $_SESSION["sql_dump"][]="___________________________________________________";
                         
         //Submit capture feeling
         if($fid = $this->spArgs("fid")) {
@@ -36,11 +36,6 @@ class main extends spController
         $this->feelings = $feelingObj->findAll();
         $_SESSION["sql_dump"][]= $userObj->dumpSql();
         
-        //Current user's info
-        $condition = array("uid"=>$uid);
-        $this->profile = $userObj->find($condition);
-        $_SESSION["sql_dump"][]= $userObj->dumpSql();
-        
         //user's moods data
         $this->moods = $moodObj->listing($uid, 10);
         $_SESSION["sql_dump"][]= $userObj->dumpSql();
@@ -49,8 +44,8 @@ class main extends spController
     //User Register
     public function register(){
         $userObj = spClass("lib_user"); //Model lib_user, access table of users
-        $_SESSION["sql_dump"][]="================================================";
-                                
+        $_SESSION["sql_dump"][]="___________________________________________________";
+                                                
         if( $uname = $this->spArgs("uname") ){ //Submit, register
             $upass = $this->spArgs("upass");
             $upass2 = $this->spArgs("upass2");
@@ -103,8 +98,8 @@ class main extends spController
 	//Log In
 	public function login(){
 	    
-        $_SESSION["sql_dump"][]="================================================";
-	    	    	    	    
+        $_SESSION["sql_dump"][]="___________________________________________________";
+	    	    	    	    	    	    
 		if($uname = $this->spArgs("uname")){ //Submit, log in
 			$upass = spClass("md5password")->pwvalue(); //Get encipered password via md5password
 			
@@ -160,8 +155,8 @@ class main extends spController
         //Current user id
         $userObj = spClass("lib_user");
         $uid = $_SESSION["userinfo"]["uid"];
-        $_SESSION["sql_dump"][]="================================================";
-                                
+        $_SESSION["sql_dump"][]="___________________________________________________";
+                                                
         $condition = array("uid"=>$uid);
         $this->profile = $userObj->find($condition);
         $_SESSION["sql_dump"][]= $userObj->dumpSql();
@@ -172,8 +167,8 @@ class main extends spController
 	    
         $userObj = spClass("lib_user");
 	    $uid = $_SESSION["userinfo"]["uid"];
-        $_SESSION["sql_dump"][]="================================================";
-	    	    	                
+        $_SESSION["sql_dump"][]="___________________________________________________";
+	    	    	    	    	                
 	    if($uname = $this->spArgs("uname")) { //Submit update
 	       $email = $this->spArgs("email");
 	       $lname = $this->spArgs("lname");
@@ -230,8 +225,8 @@ class main extends spController
 	public function users(){
 	    
 	    $userObj = spClass("lib_user");
-        $_SESSION["sql_dump"][]="================================================";
-	    	    	    
+        $_SESSION["sql_dump"][]="___________________________________________________";
+	    	    	    	    	    
 	    $this->results = $userObj->spPager($this->spArgs("page",1),10)->findAll();
 	    $_SESSION["sql_dump"][]= $userObj->dumpSql();
 	    $this->pager = $userObj->spPager()->getPager();

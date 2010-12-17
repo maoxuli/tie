@@ -1,6 +1,7 @@
 body {
 	width:400px;
-	margin:0 auto;
+	margin-top:10px;
+	margin-left:600px;
 	font-family: arial, sans-serif;
 	font-size:14px;
 	text-align:center;
@@ -47,6 +48,9 @@ body {
 	min-height:350px;
 	text-align:left;
 }
+#view table {
+    width:100%;
+}
 #view #feelings {
 	padding-top:10px;
 	padding-bottom:10px;
@@ -62,30 +66,60 @@ body {
 #view #feelings input {
     width: 50px; 
 }
+#view #mymoods .moodscurve{
+    width:100%;
+    height:80px;
+    margin-top:20px;
+    margin-bottom:40px;
+    border-left:1px solid #000;
+    border-bottom:1px solid #000;
+    background:url("bg.gif") repeat-x;
+}
 #view #mymoods td {
     padding-right:20px;
-    height:25px;
+    height:20px;
     border-bottom:1px dotted #ccc;
 }
-#view h3 {
+#view #myfriends h3 {
 	border-bottom:1px solid #000;
-}	
+}
+#view #myfriends td {
+    width:25%;
+    border-right:1px dotted #ccc;
+	border-bottom:1px dotted #ccc;
+	text-align:center;
+}
+#view #myfriends .moodscurve{
+    width:100%;
+    height:100px;
+    margin-top:5px;
+    margin-bottom:40px;
+    border-left:1px solid #000;
+    border-bottom:1px solid #000;
+    background:url("bg.gif") repeat-x;
+}
+#view #mymatching h3 {
+	border-bottom:1px solid #000;
+}
 #view #mymatching td {
-	padding-right:20px;
-	height:25px;
+	padding-right:10px;
+	height:30px;
     border-bottom:1px dotted #ccc;
 }
-#view table {
-	width:100%;
-}
+#view #myprofile h3 {
+    border-bottom:1px solid #000;
+}	
 #view #myprofile td {
 	padding-right:10px;
-	height:25px;
+	height:30px;
 	border-bottom:1px dotted #ccc;
 }
+#view #edtprofile h3 {
+    border-bottom:1px solid #000;
+}	
 #view #edtprofile td {
 	padding-right:10px;
-	height:25px;
+	height:30px;
 }
 #view #edtprofile table input {
 	width:160px;
@@ -104,15 +138,6 @@ body {
 }
 #view #ulist a:link {
 	text-decoration:none;
-}
-#view #mymoods #mycurve{
-    width:100%;
-    height:100px;
-    margin-top:20px;
-    margin-bottom:20px;
-    border-left:1px solid #000;
-    border-bottom:1px solid #000;
-    background:url("bg.gif") repeat-x;
 }
 #navi {
 	height:40px;
@@ -141,7 +166,12 @@ body {
 	color:#fff;
 }
 #sqlview {
-	border:1px solid #00f;
+	position:absolute;
+	left:10px;
+	top:10px;
+	width:420px;
+	padding:10px;
+	border:1px solid #000;
 	text-align:left;
 }
 #sqlview p {
