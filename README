@@ -1,8 +1,12 @@
+Tie: Share moods, share today!
+
 Today is everyday!
+This is a class project I did at The George Washington University
+in fall 2010 when I was a master student in Computer Science. 
 
-This is a class project at The George Washington University.
-
-Share moods, share today!
+A prototype of social networking tool is designed and implemented 
+that give us a insight into the principle of social networks and 
+the fundamental knowledge about the APIs of Android system. 
 
 Classes:
 Advanced Software Paradigms (CS210, 2010 Fall)
@@ -17,8 +21,11 @@ Maoxu Li (lim@gwmail.gwu.edu, li@limaoxu.net)
 Yi Zhang (zhangyzz@gwmail.gwu.edu)
 Zhong Xie (xz1989@gwmail.gwu.edu)
 
+Project homepage:
+http://www.limlabs.com/tie
+
 Opensource: 
 https://github.com/limlabs/tie
 
-Web Demo: 
+Web demo: 
 http://app.limlabs.com/tie
