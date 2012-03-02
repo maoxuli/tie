@@ -15,10 +15,10 @@ statistical informations to users, such as moods changing mode
 of users. Users share their personal information on a friens-
 based realationship. The client software communicates with 
 service system in a REST-style or similar fashion. The central 
-service system is developed on popular LAMP (Linux, Apache, 
-MySQL, PHP) platform. This project gives us insight into the 
-principle of social networks and the fundamental knowledge 
-about the APIs of Android system. 
+service system is developed on a PHP MVC framework and the 
+popular LAMP (Linux, Apache, MySQL, PHP) platform. This project 
+gives us insight into the principle of social networks and the 
+fundamental knowledge about the APIs of Android system. 
 
 Classes:
 Advanced Software Paradigms (CS210, 2010 Fall)
