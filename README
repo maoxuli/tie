@@ -4,28 +4,37 @@ Today is everyday!
 This is a class project I did at The George Washington University
 in fall 2010 when I was a master student in Computer Science. 
 
-A prototype of social networking tool is designed and implemented 
-that give us a insight into the principle of social networks and 
-the fundamental knowledge about the APIs of Android system. 
+The typical architecutre of social networking applications are 
+discussed and a prototype system is developed as a proof of 
+concept. A client software running on Android system works as a 
+user interface to capture user's current information, such as 
+current mood, then pushed to central service system, where users'
+personal infomation is managed with a database. The service 
+system analyzes users' data in a long term basis and feeds some 
+statistical informations to users, such as moods changing mode 
+of users. Users share their personal information on a friens-
+based realationship. The client software communicates with 
+service system in a REST-style or similar fashion. The central 
+service system is developed on popular LAMP (Linux, Apache, 
+MySQL, PHP) platform. This project gives us insight into the 
+principle of social networks and the fundamental knowledge 
+about the APIs of Android system. 
 
 Classes:
 Advanced Software Paradigms (CS210, 2010 Fall)
 Database Management System (CS241, 2010 Fall)
+The George Washington Univerisy, Washington DC
 
 Instructors:
 Prof. Abdelghani Bellaachia
 Prof. Matthew M. Burke
 
 Team:
-Maoxu Li (lim@gwmail.gwu.edu, li@limaoxu.net)
+Maoxu Li (lim@gwmail.gwu.edu, li@maoxuli.net)
 Yi Zhang (zhangyzz@gwmail.gwu.edu)
 Zhong Xie (xz1989@gwmail.gwu.edu)
 
-Project homepage:
-http://www.limlabs.com/tie
-
-Opensource: 
-https://github.com/limlabs/tie
-
-Web demo: 
-http://app.limlabs.com/tie
+Links:
+https://github.com/maoxuli/tie
+http://www.maoxuli.com/portfolio/tie
+http://www.maoxuli.com/portfolio2.html#tie
